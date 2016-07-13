@@ -12,9 +12,6 @@
 */
 
 Route::get('/', function () {
-    $user = App\User::findOrFail(1);
-    Debugbar::info($user);
-
     return view('welcome');
 });
 
