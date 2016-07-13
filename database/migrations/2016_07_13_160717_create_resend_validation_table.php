@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateForumPostTable extends Migration {
+class CreateResendValidationTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,11 @@ class CreateForumPostTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('forum_post', function(Blueprint $table)
+		Schema::create('resend_validation', function(Blueprint $table)
 		{
 			$table->integer('id', true);
 			$table->integer('userid');
-			$table->integer('date');
-			$table->text('text', 65535);
-			$table->integer('topic');
-			$table->integer('lastedit')->default(0);
-			$table->integer('lastuserid')->nullable()->default(0);
+			$table->integer('time');
 		});
 	}
 
@@ -32,7 +28,7 @@ class CreateForumPostTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('forum_posts');
+		Schema::drop('resend_validation');
 	}
 
 }

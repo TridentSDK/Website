@@ -25,6 +25,12 @@ class CreateUserTable extends Migration {
 			$table->boolean('allow_review')->default(0);
 			$table->integer('last_online');
 			$table->integer('creation_date');
+			$table->string('first_ip', 15);
+			$table->string('last_ip', 15);
+			$table->string('validation_code', 64);
+			$table->boolean('validated');
+			$table->boolean('send_emails');
+			$table->string('token', 64);
 		});
 	}
 
