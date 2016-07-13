@@ -159,8 +159,8 @@ return [
         /*
          * Migration Generation...
          */
-        Way\Generators\GeneratorsServiceProvider::class,
-        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
+        //Way\Generators\GeneratorsServiceProvider::class,
+        //Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
 
         /*
          * Debugbar
@@ -170,7 +170,7 @@ return [
         /*
          * IDE Helper
          */
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 
