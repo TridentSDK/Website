@@ -4,5 +4,5 @@
         @include("utils.paginator", ["paginator" => $news])
     </div>
 @else
-    @include("utils.info", ["message" => "No News Found!", "close" => true, "spacedown" => true])
+    @include("utils.info", ["message" => "No News Found!", "close" => false, "spacedown" => false])
 @endif
