@@ -1,0 +1,27 @@
+{
+  "name": "tridentsdk-website",
+  "authors": [
+    "Vilsol <vilsol2000@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "Apache 2.0",
+  "homepage": "https://tridentsdk.net/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "jquery": "^3.1.0"
+  },
+  "dependencies": {
+    "bootstrap-material-design": "^0.5.10",
+    "bootstrap": "^3.3.6",
+    "jquery": "^3.1.0",
+    "jquery-ui": "^1.12.0"
+  }
+}

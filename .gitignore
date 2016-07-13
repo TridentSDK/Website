@@ -10,3 +10,4 @@ _ide_helper_models.php
 readme.md
 .idea/
 storage/
+bower_components
