@@ -3,7 +3,7 @@
         <h3 class="panel-title">Latest Commits</h3>
     </div>
     <div class="panel-body">
-        <h3 class="nospace">TridentSDK</h3>
+        <h3 class="nospace">TridentSDK <img src="https://travis-ci.org/TridentSDK/TridentSDK.svg?branch=bleeding-edge" class="build-status"/></h3>
         <div class="media">
             <a class="pull-left" href="#">
                 <img class="media-object" src="https://www.gravatar.com/avatar/{{ md5($tridentSDKCommit->author->email) }}?s=45" alt="Avatar of xTrollxDudex">
@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <h3 class="nospace" style="margin-top: 15px;">Trident</h3>
+        <h3 class="nospace" style="margin-top: 15px;">Trident <img src="https://travis-ci.org/TridentSDK/Trident.svg?branch=bleeding-edge" class="build-status"/></h3>
         <div class="media">
             <a class="pull-left" href="#">
                 <img class="media-object" src="https://www.gravatar.com/avatar/{{ md5($tridentCommit->author->email) }}?s=45" alt="Avatar of xTrollxDudex">

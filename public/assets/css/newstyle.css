@@ -239,3 +239,7 @@ ol.example li.placeholder:before {
 .sidebar h4 .limited {
 	line-height: 20px;
 }
+
+img.build-status {
+	padding-bottom: 3px;
+}
