@@ -227,3 +227,15 @@ ol.example li.placeholder:before {
 .centered {
 	text-align: center;
 }
+
+.sidebar .limited {
+	max-width: 270px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	float: left;
+}
+
+.sidebar h4 .limited {
+	line-height: 20px;
+}

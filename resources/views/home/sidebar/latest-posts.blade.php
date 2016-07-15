@@ -9,7 +9,8 @@
                     <img class="media-object" src="{{ $post->getUser()->getAvatar(45) }}" alt="Avatar of {{ $post->getUser()->username }}">
                 </a>
                 <div class="media-body">
-                    <h4 class="media-heading"><a href="/f/t/{{ $post->getTopic()->id }}/" title="{{ $post->getTopic()->name }}">{{ $post->getTopic()->name }}</a></h4>
+                    <h4 class="media-heading"><a class="limited" href="/f/t/{{ $post->getTopic()->id }}/" title="{{ $post->getTopic()->name }}">{{ $post->getTopic()->name }}</a></h4>
+                    <div class="clearfix"></div>
                     <a href="/f/t/{{ $post->getTopic()->id }}/{{ $post->getPage() }}/#post-{{ $post->id }}">{{ \Carbon\Carbon::createFromTimeStamp($post->date)->diffForHumans() }}</a>
                 </div>
             </div>

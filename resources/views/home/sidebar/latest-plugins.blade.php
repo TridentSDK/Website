@@ -9,7 +9,8 @@
                     <img class="media-object plugin-logo-small" src="{{ $plugin->logo == "" ? asset("assets/images/no_plugin_image.svg") : $plugin->logo }}" alt="Logo of {{ $plugin->name }}">
                 </a>
                 <div class="media-body">
-                    <h4 class="media-heading"><a href="/p/v/{{ $plugin->id }}/" title="{{ $plugin->name }}">{{ $plugin->name }}</a></h4>
+                    <h4 class="media-heading"><a class="limited" href="/p/v/{{ $plugin->id }}/" title="{{ $plugin->name }}">{{ $plugin->name }}</a></h4>
+                    <div class="clearfix"></div>
                     <small>{{ $plugin->description }}</small>
                 </div>
             </div>
