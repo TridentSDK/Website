@@ -36,11 +36,15 @@ class ForumPost extends Model {
     }
 
     function user(){
-        return User::find($this->userid);
+        return \Cache::remember('users', 0, function(){
+            return User::find($this->userid);
+        });
     }
 
     function topic(){
-        return ForumTopic::find($this->topic);
+        return \Cache::remember('forum_topic', 0, function(){
+            return ForumTopic::find($this->topic);
+        });
     }
 
     function scopeLatest(Builder $query, $count = 5){

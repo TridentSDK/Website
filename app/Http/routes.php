@@ -42,3 +42,29 @@ Route::get('/members', function () {
         "members" => $members,
     ]);
 });
+
+Route::get('/download', function () {
+    $stableUrl = \TridentSDK\Config::find("stable_url")->value;
+    $unstableUrl = \TridentSDK\Config::find("unstable_url")->value;
+    $bleedingUrl = \TridentSDK\Config::find("bleeding_url")->value;
+
+    return view('download.layout', [
+        "version" => array(
+            "stable" => array(
+                "version" => \TridentSDK\Config::find("stable_version")->value,
+                "url" => $stableUrl,
+                "message" => $stableUrl == "#" ? "Unavailable" : "Here",
+            ),
+            "unstable" => array(
+                "version" => \TridentSDK\Config::find("unstable_version")->value,
+                "url" => $unstableUrl,
+                "message" => $unstableUrl == "#" ? "Unavailable" : "Here",
+            ),
+            "bleeding" => array(
+                "version" => \TridentSDK\Config::find("bleeding_version")->value,
+                "url" => $bleedingUrl,
+                "message" => $bleedingUrl == "#" ? "Unavailable" : "Here",
+            )
+        ),
+    ]);
+});
