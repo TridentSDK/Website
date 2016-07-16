@@ -68,3 +68,21 @@ Route::get('/download', function () {
         ),
     ]);
 });
+
+Route::get('/rules', function () {
+    return view('rules.layout', [
+        "rules" => \TridentSDK\Config::find("RuleList")->value,
+    ]);
+});
+
+Route::get('/faq', function () {
+    return view('faq.layout', [
+        "faq" => \TridentSDK\Config::find("FaqList")->value,
+    ]);
+});
+
+Route::get('/techdoc', function () {
+    return view('techdoc.layout', [
+        "doc" => \TridentSDK\Config::find("TechDoc")->value,
+    ]);
+});
