@@ -27,7 +27,7 @@
 <script src="{{ asset("/bower_components/bootstrap-material-design/dist/js/material.min.js") }}" type="text/javascript"></script>
 <script src="{{ asset("/bower_components/bootstrap-material-design/dist/js/ripples.min.js") }}" type="text/javascript"></script>
 
-<script type="text/javascript" src="{{ asset("/assets/js/bootstrapValidator.min.js") }}"></script>
+<script src="{{ asset("/bower_components/bootstrap-validator/dist/validator.min.js") }}" type="text/javascript"></script>
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
 

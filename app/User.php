@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace TridentSDK;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * App\User
+ * TridentSDK\User
  *
  * @property integer $id
  * @property string $username
@@ -24,28 +24,38 @@ use Illuminate\Database\Eloquent\Model;
  * @property boolean $validated
  * @property boolean $send_emails
  * @property string $token
- * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereUsername($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereSalt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereMcusername($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereRank($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereAvatar($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereAllowReview($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereLastOnline($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereCreationDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereFirstIp($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereLastIp($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereValidationCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereValidated($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereSendEmails($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereToken($value)
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property boolean $rehashed
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereUsername($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereSalt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereMcusername($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereRank($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereAvatar($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereAllowReview($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereLastOnline($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereCreationDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereFirstIp($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereLastIp($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereValidationCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereValidated($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereSendEmails($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereRehashed($value)
  * @mixin \Eloquent
  */
-class User extends Model {
+class User extends Authenticatable {
 
     protected $table = "user";
+
+    protected $fillable = ['username', 'email', 'password', 'validation_code', 'token'];
 
     public function getAvatar($size = 0){
         if($this->avatar == "" || $this->avatar == "gravatar"){
@@ -54,11 +64,9 @@ class User extends Model {
             }else{
                 return "https://www.gravatar.com/avatar/".md5(strtolower(trim($this->email)));
             }
-        }else{
-            return $this->avatar;
         }
 
-        return "";
+        return $this->avatar;
     }
 
 }

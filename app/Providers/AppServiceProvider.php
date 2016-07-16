@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace TridentSDK\Providers;
 
+use Captcha\Captcha;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,6 +13,18 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot(){
+        ini_set("xdebug.var_display_max_depth", 5);
+
+        $captcha = new Captcha();
+        $captcha->setPublicKey($_ENV["RECAPTCHA_PUBLIC"]);
+        $captcha->setPrivateKey($_ENV["RECAPTCHA_SECRET"]);
+
+        if (!isset($_SERVER['REMOTE_ADDR'])) {
+            $captcha->setRemoteIp('192.168.1.1');
+        }
+
+        view()->share("captcha", $captcha);
+
         view()->share('navigation_menu_items', array(
             "Forum" => "/f/",
             "Members" => "/members/",

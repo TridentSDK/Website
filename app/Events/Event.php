@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace TridentSDK\Events;
 
 abstract class Event
 {

@@ -1,20 +1,20 @@
 <?php
 
-namespace App;
+namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Log
+ * TridentSDK\Log
  *
  * @property integer $id
  * @property string $type
  * @property integer $user
  * @property string $data
- * @method static \Illuminate\Database\Query\Builder|\App\Log whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Log whereType($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Log whereUser($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Log whereData($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Log whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Log whereType($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Log whereUser($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Log whereData($value)
  * @mixin \Eloquent
  */
 class Log extends Model {

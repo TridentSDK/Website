@@ -16,11 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    $news = \App\NewsArticle::orderBy("date", "DESC")->paginate(4);
-    $tridentSDKCommit = json_decode(\App\Config::where("key", "=", "tridentSDKCommit")->first()->value);
-    $tridentCommit = json_decode(\App\Config::where("key", "=", "tridentCommit")->first()->value);
-    $latestPlugins = \App\Plugin::where("accepted", "=", 1)->orderBy("lastupdate", "DESC")->limit(5)->get();
-    $latestPosts = \App\ForumPost::groupBy("topic")->orderBy("date", "DESC")->limit(5)->get();
+    $news = \TridentSDK\NewsArticle::orderBy("date", "DESC")->paginate(4);
+    $tridentSDKCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentSDKCommit")->first()->value);
+    $tridentCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentCommit")->first()->value);
+    $latestPlugins = \TridentSDK\Plugin::where("accepted", "=", 1)->orderBy("lastupdate", "DESC")->limit(5)->get();
+    $latestPosts = \TridentSDK\ForumPost::latest()->get();
 
     return view('home.layout', [
         "news" => $news,
@@ -30,3 +30,7 @@ Route::get('/home', function () {
         "latestPosts" => $latestPosts
     ]);
 });
+
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');

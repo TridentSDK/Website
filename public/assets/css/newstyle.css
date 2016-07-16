@@ -243,3 +243,14 @@ ol.example li.placeholder:before {
 img.build-status {
 	padding-bottom: 3px;
 }
+
+.form-group.has-error .form-control {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f44336), to(#f44336)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
+	background-image: -webkit-linear-gradient(#f44336, #f44336), -webkit-linear-gradient(#D2D2D2, #D2D2D2);
+	background-image: -o-linear-gradient(#f44336, #f44336), -o-linear-gradient(#D2D2D2, #D2D2D2);
+	background-image: linear-gradient(#f44336, #f44336), linear-gradient(#D2D2D2, #D2D2D2);
+}
+
+.form-group .help-block {
+	display: block;
+}

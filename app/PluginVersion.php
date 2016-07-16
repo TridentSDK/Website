@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\PluginVersion
+ * TridentSDK\PluginVersion
  *
  * @property integer $id
  * @property integer $pluginid
@@ -17,16 +17,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $md5_hash
  * @property integer $downloads
  * @property boolean $accepted
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion wherePluginid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereVersion($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereFilename($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereChangelog($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereTridentVersion($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereMd5Hash($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereDownloads($value)
- * @method static \Illuminate\Database\Query\Builder|\App\PluginVersion whereAccepted($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion wherePluginid($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereVersion($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereFilename($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereChangelog($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereTridentVersion($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereMd5Hash($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereDownloads($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereAccepted($value)
  * @mixin \Eloquent
  */
 class PluginVersion extends Model {

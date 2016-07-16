@@ -1,18 +1,18 @@
 <?php
 
-namespace App;
+namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Session
+ * TridentSDK\Session
  *
  * @property integer $userid
  * @property string $session
  * @property integer $timeout
- * @method static \Illuminate\Database\Query\Builder|\App\Session whereUserid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Session whereSession($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Session whereTimeout($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Session whereUserid($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Session whereSession($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Session whereTimeout($value)
  * @mixin \Eloquent
  */
 class Session extends Model {

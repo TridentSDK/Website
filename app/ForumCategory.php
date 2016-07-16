@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\ForumCategory
+ * TridentSDK\ForumCategory
  *
  * @property integer $id
  * @property string $name
@@ -16,15 +16,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $topics
  * @property integer $posts
  * @property string $description
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory whereParent($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory whereRank($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory whereOrder($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory whereLastpost($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory whereTopics($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory wherePosts($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumCategory whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereParent($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereRank($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereOrder($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereLastpost($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereTopics($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory wherePosts($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereDescription($value)
  * @mixin \Eloquent
  */
 class ForumCategory extends Model {

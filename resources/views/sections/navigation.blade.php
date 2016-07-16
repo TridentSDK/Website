@@ -32,3 +32,4 @@
         </div>
     </div>
 </div>
+@include("sections.login-modal")

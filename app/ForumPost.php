@@ -1,11 +1,12 @@
 <?php
 
-namespace App;
+namespace TridentSDK;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\ForumPost
+ * TridentSDK\ForumPost
  *
  * @property integer $id
  * @property integer $userid
@@ -15,14 +16,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $lastedit
  * @property integer $lastuserid
  * @property boolean $deleted
- * @method static \Illuminate\Database\Query\Builder|\App\ForumPost whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumPost whereUserid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumPost whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumPost whereText($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumPost whereTopic($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumPost whereLastedit($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumPost whereLastuserid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ForumPost whereDeleted($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereUserid($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereText($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereTopic($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereLastedit($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereLastuserid($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereDeleted($value)
  * @mixin \Eloquent
  */
 class ForumPost extends Model {
@@ -34,12 +35,16 @@ class ForumPost extends Model {
         return ceil(ForumPost::where("topic", "=", $this->topic)->count() / ForumPost::$postsPerPage);
     }
 
-    function getUser(){
+    function user(){
         return User::find($this->userid);
     }
 
-    function getTopic(){
+    function topic(){
         return ForumTopic::find($this->topic);
+    }
+
+    function scopeLatest(Builder $query, $count = 5){
+        return $query->where("deleted", "=", 0)->groupBy("topic")->orderBy("date", "DESC")->limit($count);
     }
 
 }

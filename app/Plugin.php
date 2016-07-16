@@ -1,11 +1,11 @@
 <?php
 
-namespace App;
+namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Plugin
+ * TridentSDK\Plugin
  *
  * @property integer $id
  * @property integer $userid
@@ -27,26 +27,26 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $primary
  * @property string $secondary
  * @property integer $license
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereUserid($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereCreationdate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereLastupdate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereDescription($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereLogo($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereLatestversion($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereHidden($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereViews($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereFavourites($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereDownloads($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereAccepted($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereWebsite($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereFulldescription($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereRepoDisplayUrl($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereRepoCloneUrl($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin wherePrimary($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereSecondary($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Plugin whereLicense($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereUserid($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereCreationdate($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereLastupdate($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereLogo($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereLatestversion($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereHidden($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereViews($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereFavourites($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereDownloads($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereAccepted($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereWebsite($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereFulldescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereRepoDisplayUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereRepoCloneUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin wherePrimary($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereSecondary($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereLicense($value)
  * @mixin \Eloquent
  */
 class Plugin extends Model {
