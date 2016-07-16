@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
+
 Route::get('/home', function () {
     $news = \TridentSDK\NewsArticle::orderBy("date", "DESC")->paginate(4);
     $tridentSDKCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentSDKCommit")->first()->value);
@@ -31,6 +35,10 @@ Route::get('/home', function () {
     ]);
 });
 
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthController@login');
-Route::get('logout', 'AuthController@logout');
+Route::get('/members', function () {
+    $members = \TridentSDK\User::orderBy("id", "ASC")->paginate(18);
+
+    return view('members.layout', [
+        "members" => $members,
+    ]);
+});
