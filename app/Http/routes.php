@@ -86,3 +86,9 @@ Route::get('/techdoc', function () {
         "doc" => \TridentSDK\Config::find("TechDoc")->value,
     ]);
 });
+
+Route::get('/user/{id}', function ($id) {
+    return view('user.layout', [
+        "user" => \TridentSDK\User::find($id),
+    ]);
+});

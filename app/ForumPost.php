@@ -36,19 +36,23 @@ class ForumPost extends Model {
     }
 
     function user(){
-        return \Cache::remember('users', 0, function(){
+        return \Cache::remember('user-'.$this->userid, 0, function(){
             return User::find($this->userid);
         });
     }
 
     function topic(){
-        return \Cache::remember('forum_topic', 0, function(){
+        return \Cache::remember('forum_topic-'.$this->topic, 0, function(){
             return ForumTopic::find($this->topic);
         });
     }
 
     function scopeLatest(Builder $query, $count = 5){
         return $query->where("deleted", "=", 0)->groupBy("topic")->orderBy("date", "DESC")->limit($count);
+    }
+
+    function scopeInnerTopic(Builder $query){
+        return $query->join("forum_topic", "forum_post.topic", "=", "forum_topic.id")->where("forum_post.deleted", "=", false)->where("forum_topic.deleted", "=", false);
     }
 
 }

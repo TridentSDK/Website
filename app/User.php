@@ -69,4 +69,24 @@ class User extends Authenticatable {
         return $this->avatar;
     }
 
+    public function topicCount(){
+        return \Cache::remember('user_forum_topic_count'.$this->id, 0, function(){
+            return ForumTopic::whereUser($this->id)->whereDeleted(false)->count();
+        });
+    }
+
+    public function postCount(){
+        return \Cache::remember('user_forum_post_count'.$this->id, 0, function(){
+            return ForumPost::whereUserid($this->id)->whereDeleted(false)->count();
+        });
+    }
+
+    public function recentTopics($count = 14){
+        return ForumTopic::whereUser($this->id)->whereDeleted(false)->orderBy("date", "DESC")->limit($count)->get();
+    }
+
+    public function recentPosts($count = 14){
+        return ForumPost::getModel()->innerTopic()->where("forum_post.userid", "=", $this->id)->orderBy("forum_post.date", "DESC")->limit($count)->get();
+    }
+
 }
