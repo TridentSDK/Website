@@ -20,10 +20,10 @@ Route::post('login', 'AuthController@login');
 Route::get('logout', 'AuthController@logout');
 
 Route::get('/home', function () {
-    $news = \TridentSDK\NewsArticle::orderBy("date", "DESC")->paginate(4);
+    $news = \TridentSDK\NewsArticle::orderBy("created_at", "DESC")->paginate(4);
     $tridentSDKCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentSDKCommit")->first()->value);
     $tridentCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentCommit")->first()->value);
-    $latestPlugins = \TridentSDK\Plugin::where("accepted", "=", 1)->orderBy("lastupdate", "DESC")->limit(5)->get();
+    $latestPlugins = \TridentSDK\Plugin::whereAccepted(true)->orderBy("updated_at", "DESC")->limit(5)->get();
     $latestPosts = \TridentSDK\ForumPost::latest()->get();
 
     return view('home.layout', [

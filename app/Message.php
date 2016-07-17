@@ -22,6 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereDate($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereLastedit($value)
  * @mixin \Eloquent
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereUpdatedAt($value)
  */
 class Message extends Model {
 

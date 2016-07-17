@@ -171,7 +171,7 @@ return [
         /*
          * IDE Helper
          */
-        //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 

@@ -25,6 +25,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereLastuserid($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereDeleted($value)
  * @mixin \Eloquent
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost latest($count = 5)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost innerTopic()
  */
 class ForumPost extends Model {
 
@@ -48,7 +54,7 @@ class ForumPost extends Model {
     }
 
     function scopeLatest(Builder $query, $count = 5){
-        return $query->where("deleted", "=", 0)->groupBy("topic")->orderBy("date", "DESC")->limit($count);
+        return $query->where("deleted", "=", 0)->groupBy("topic")->orderBy("created_at", "DESC")->limit($count);
     }
 
     function scopeInnerTopic(Builder $query){

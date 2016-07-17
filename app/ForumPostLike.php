@@ -14,6 +14,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPostLike whereUserid($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPostLike wherePostid($value)
  * @mixin \Eloquent
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPostLike whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPostLike whereUpdatedAt($value)
  */
 class ForumPostLike extends Model {
 

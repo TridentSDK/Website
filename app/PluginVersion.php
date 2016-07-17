@@ -28,6 +28,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereDownloads($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereAccepted($value)
  * @mixin \Eloquent
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\PluginVersion whereUpdatedAt($value)
  */
 class PluginVersion extends Model {
 

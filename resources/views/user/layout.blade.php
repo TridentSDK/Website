@@ -20,7 +20,7 @@
                         <span class="da">Last Online</span>
                         <span class="dd">{{ $user->last_online == 0 ? "Never" : \Carbon\Carbon::createFromTimestamp($user->last_online)->diffForHumans() }}</span>
                         <span class="da">Joined</span>
-                        <span class="dd">{{ \Carbon\Carbon::createFromTimestamp($user->creation_date)->diffForHumans() }}</span>
+                        <span class="dd">{{ $user->created_at->diffForHumans() }}</span>
                         <span class="da">Topics</span>
                         <span class="dd">{{ $user->topicCount() }}</span>
                         <span class="da">Posts</span>
@@ -49,7 +49,7 @@
                                             @foreach($user->recentPosts(14) as $post)
                                                 <tr>
                                                     <td><a href="/f/t/{{ $post->topic()->id }}/">{{ $post->name }}</a></td>
-                                                    <td>{{ \Carbon\Carbon::createFromTimestamp($post->date)->diffForHumans() }}</td>
+                                                    <td>{{ $post->created_at->diffForHumans() }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -71,7 +71,7 @@
                                         @foreach($user->recentTopics(14) as $topic)
                                             <tr>
                                                 <td><a href="/f/t/{{ $topic->id }}/">{{ $topic->name }}</a></td>
-                                                <td>{{ \Carbon\Carbon::createFromTimestamp($topic->date)->diffForHumans() }}</td>
+                                                <td>{{ $topic->created_at->diffForHumans() }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

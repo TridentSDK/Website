@@ -20,6 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Comment whereUserid($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Comment whereComment($value)
  * @mixin \Eloquent
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Comment whereUpdatedAt($value)
  */
 class Comment extends Model {
 
