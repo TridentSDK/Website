@@ -31,4 +31,13 @@ class ForumCategory extends Model {
 
     protected $table = "forum_category";
 
+    public function breadCrumbs(){
+        $self = array($this->name => "/forum/category/".$this->id."/");
+        if($this->parent != 0){
+            return array_merge(ForumCategory::find($this->parent)->breadCrumbs(), $self);
+        }else{
+            return $self;
+        }
+    }
+
 }

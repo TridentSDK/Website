@@ -12,7 +12,7 @@
                     @if(is_array($val))
                         @include("sections.navigation-dropdown", ["name" => $key, "dropdown" => $val])
                     @else
-                        @if(Request::is(str_replace("/", "", $val)))
+                        @if(Request::segment(1) == str_replace("/", "", $val)))
                             <li class="active"><a href="{{ url($val) }}" {{ (substr($val, 0, 1) == "/" ? "" : ' target="_blank"') }}>{{ $key }}</a></li>
                         @else
                             <li><a href="{{ url($val) }}" {{ (substr($val, 0, 1) == "/" ? "" : ' target="_blank"') }}>{{ $key }}</a></li>

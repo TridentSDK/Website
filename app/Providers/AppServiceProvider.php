@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider {
         view()->share("captcha", $captcha);
 
         view()->share('navigation_menu_items', array(
-            "Forum"    => "/f",
+            "Forum"    => "/forum",
             "Members"  => "/members",
             "Plugins"  => "/plugins",
             "GitHub"   => "https://github.com/TridentSDK/",

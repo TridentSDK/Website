@@ -37,4 +37,12 @@ class ForumTopic extends Model {
 
     protected $table = "forum_topic";
 
+    public function posts($paged = false, $perPage = 10){
+        if(!$paged){
+            return ForumPost::whereTopic($this->id)->whereDeleted(false)->get();
+        }else{
+            return ForumPost::whereTopic($this->id)->whereDeleted(false)->paginate($perPage);
+        }
+    }
+
 }

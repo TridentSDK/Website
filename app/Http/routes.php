@@ -92,3 +92,8 @@ Route::get('/user/{id}', function ($id) {
         "user" => \TridentSDK\User::find($id),
     ]);
 });
+
+Route::get('/forum', 'ForumController@index');
+Route::get('/forum/topic/{id}', 'ForumController@topic');
+Route::get('/forum/edit/{id}', 'ForumController@editPost');
+Route::post('/forum/edit/{id}/save', 'ForumController@savePost');

@@ -5,7 +5,7 @@
             @if(is_array($v))
                 @include("sections.navigation-dropdown", ["name" => $k, "dropdown" => $v])
             @else
-                @if(Request::is(str_replace("/", "", $v)))
+                @if(Request::segment(1) == str_replace("/", "", $val)))
                     <li class="active"><a href="{{ $v }}">{{ $k }}</a></li>
                 @else
                     <li><a href="{{ $v }}">{{ $k }}</a></li>

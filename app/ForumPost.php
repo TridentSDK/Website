@@ -61,4 +61,10 @@ class ForumPost extends Model {
         return $query->join("forum_topic", "forum_post.topic", "=", "forum_topic.id")->where("forum_post.deleted", "=", false)->where("forum_topic.deleted", "=", false);
     }
 
+    function lastUser(){
+        return \Cache::remember('user-'.$this->lastuserid, 0, function(){
+            return User::find($this->lastuserid);
+        });
+    }
+
 }
