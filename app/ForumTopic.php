@@ -45,4 +45,16 @@ class ForumTopic extends Model {
         }
     }
 
+    public function url(){
+        return "/forum/topic/".$this->id;
+    }
+
+    public function replyCount(){
+        return ForumPost::whereTopic($this->id)->count() - 1;
+    }
+
+    public function lastReply(){
+        return ForumPost::whereTopic($this->id)->orderBy("created_at", "DESC")->skip(1)->first();
+    }
+
 }

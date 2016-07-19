@@ -67,4 +67,9 @@ class ForumPost extends Model {
         });
     }
 
+    function url(){
+        $page = $this->getPage();
+        return "/forum/topic/".$this->topic.($page > 1 ? "?page=".$page : "")."#post-".$this->id;
+    }
+
 }

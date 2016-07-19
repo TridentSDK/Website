@@ -8,8 +8,25 @@ use TridentSDK\Http\Requests;
 class ForumController extends Controller {
 
     public function index(){
-        return view('techdoc.layout', [
-            "doc" => \TridentSDK\Config::find("TechDoc")->value,
+        return view('forum.index', [
+            "categories" => \TridentSDK\ForumCategory::whereParent(0)->orderBy("rank", "DESC")->get()
+        ]);
+    }
+    
+    public function category($id){
+        if(!is_numeric($id)){
+            return redirect("/forum");
+        }
+
+        $category = \TridentSDK\ForumCategory::find($id);
+
+        if($category == null){
+            return redirect("/forum");
+        }
+
+        return view('forum.category', [
+            "category" => $category,
+            "breadcrumbs" => $category->breadCrumbs(true)
         ]);
     }
 
