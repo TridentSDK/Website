@@ -71,6 +71,8 @@
                     </tr>
                 @endforeach
             </table>
+        @else
+            <div class="alert alert-primary" role="alert">No topics found.</div>
         @endif
     </div>
 @stop
