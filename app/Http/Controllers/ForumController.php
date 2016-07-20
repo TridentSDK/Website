@@ -2,7 +2,10 @@
 
 namespace TridentSDK\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
 use TridentSDK\ForumCategory;
+use TridentSDK\ForumPost;
+use TridentSDK\ForumTopic;
 use TridentSDK\Http\Requests;
 
 class ForumController extends Controller {
@@ -110,6 +113,56 @@ class ForumController extends Controller {
 
         return view('forum.edit-post-saved', [
             "url" => $url,
+        ]);
+    }
+
+    public function newTopic($category){
+        if(!is_numeric($category)){
+            return redirect("/forum");
+        }
+
+        $category = \TridentSDK\ForumCategory::find($category);
+
+        if($category == null || !\Auth::check()){
+            return redirect("/forum");
+        }
+
+        return view('forum.new-topic');
+    }
+
+    public function postTopic($category){
+        if(!is_numeric($category)){
+            return redirect("/forum");
+        }
+
+        $category = \TridentSDK\ForumCategory::find($category);
+
+        if($category == null || !\Auth::check()){
+            return redirect("/forum");
+        }
+
+        if(empty(trim(strip_tags(\Request::get("topic_title"))))){
+            return redirect()->back()->withInput(Input::all())->withErrors("Topic title can't be empty!", "topic");
+        }
+
+        if(empty(trim(strip_tags(\Request::get("topic_text"))))){
+            return redirect()->back()->withInput(Input::all())->withErrors("Topic text can't be empty!", "topic");
+        }
+
+        $topic = new ForumTopic();
+        $topic->name = e(\Request::get("topic_title"));
+        $topic->user = \Auth::user()->id;
+        $topic->category = $category->id;
+        $topic->save();
+
+        $post = new ForumPost();
+        $post->userid = \Auth::user()->id;
+        $post->text = \Request::get("topic_text");
+        $post->topic = $topic->id;
+        $post->save();
+
+        return view('forum.topic-posted', [
+            "url" => "/forum/topic/".$topic->id,
         ]);
     }
 

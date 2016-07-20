@@ -12,20 +12,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $sender
  * @property integer $recipient
  * @property string $message
- * @property integer $date
- * @property integer $lastedit
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereParent($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereSender($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereRecipient($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereMessage($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereLastedit($value)
  * @mixin \Eloquent
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Message whereUpdatedAt($value)
  */
 class Message extends Model {
 

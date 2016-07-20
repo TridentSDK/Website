@@ -45,7 +45,13 @@ class ForumCategory extends Model {
     }
 
     public function lastPost(){
-        return ForumPost::find($this->lastpost);
+        if($this->lastpost == 0){
+            return null;
+        }
+
+        return \Cache::remember('post-'.$this->lastpost, 0, function(){
+            return ForumPost::find($this->lastpost);
+        });
     }
 
     public function pageTopics($perPage = 20){
@@ -54,6 +60,25 @@ class ForumCategory extends Model {
 
     public function hasChildren(){
         return ForumCategory::whereParent($this->id)->exists();
+    }
+
+    public function newPost($post){
+        $this->lastpost = $post;
+        $this->posts = $this->posts + 1;
+        $this->save();
+
+        if($this->parent > 0){
+            ForumCategory::find($this->parent)->newPost($post);
+        }
+    }
+
+    public function newTopic($topic){
+        $this->topics = $this->topics + 1;
+        $this->save();
+
+        if($this->parent > 0){
+            ForumCategory::find($this->parent)->newTopic($topic);
+        }
     }
 
 }

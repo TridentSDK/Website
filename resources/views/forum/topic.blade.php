@@ -8,7 +8,8 @@
         @php($first = true)
         @foreach($posts as $post)
             <div class="panel panel-{{ $first ? "info" : "default" }}">
-                <div class="panel-heading clearfix" id="post-{{ $post->id }}">
+                <div class="panel-heading clearfix">
+                    <span class="title-linker" id="post-{{ $post->id }}"></span>
                     <h3 class="panel-title pull-left">{{ $topic->name }}
                         <small>
                             <a href="/forum/topic/{{ $topic->id }}/?page={{ $posts->currentPage() }}#post-{{ $post->id }}" title="#{{ $post->id }}">#{{ $enum++ }}</a>
@@ -62,4 +63,14 @@
             @php($first = false)
         @endforeach
     </div>
+
+    @include("forum.breadcrumbs")
+
+    <div class="centered">
+        @include("utils.paginator", ["paginator" => $posts])
+    </div>
+
+    @if(Auth::check())
+
+    @endif
 @stop

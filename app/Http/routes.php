@@ -98,3 +98,5 @@ Route::get('/forum/category/{id}', 'ForumController@category');
 Route::get('/forum/topic/{id}', 'ForumController@topic');
 Route::get('/forum/edit/{id}', 'ForumController@editPost');
 Route::post('/forum/edit/{id}/save', 'ForumController@savePost');
+Route::get('/forum/new/topic/{category}', 'ForumController@newTopic');
+Route::post('/forum/new/topic/{category}/post', 'ForumController@postTopic');

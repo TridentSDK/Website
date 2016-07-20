@@ -38,8 +38,8 @@
                                 None
                             @endif
                         </div>
-                        <span class="badge">{{ $child->topics }}</span>
                         <span class="badge">{{ $child->posts }}</span>
+                        <span class="badge">{{ $child->topics }}</span>
                     </div>
                     <div class="list-group-separator"></div>
                 @endforeach

@@ -9,9 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $id
  * @property integer $userid
- * @property integer $creationdate
  * @property string $name
- * @property integer $lastupdate
  * @property string $description
  * @property string $logo
  * @property string $latestversion
@@ -27,11 +25,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $primary
  * @property string $secondary
  * @property integer $license
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereUserid($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereCreationdate($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereLastupdate($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereLogo($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereLatestversion($value)
@@ -48,10 +48,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereSecondary($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereLicense($value)
  * @mixin \Eloquent
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereUpdatedAt($value)
  */
 class Plugin extends Model {
 

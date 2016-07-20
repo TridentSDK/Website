@@ -254,3 +254,10 @@ img.build-status {
 .form-group .help-block {
 	display: block;
 }
+
+.posts .title-linker {
+	display: block;
+	content: "";
+	height: 200px;
+	margin: -200px 0 0;
+}

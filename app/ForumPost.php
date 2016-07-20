@@ -10,27 +10,23 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $id
  * @property integer $userid
- * @property integer $date
  * @property string $text
  * @property integer $topic
- * @property integer $lastedit
  * @property integer $lastuserid
  * @property boolean $deleted
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereUserid($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereText($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereTopic($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereLastedit($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereLastuserid($value)
- * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereDeleted($value)
- * @mixin \Eloquent
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost latest($count = 5)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost innerTopic()
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereUserid($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereText($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereTopic($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereLastuserid($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereDeleted($value)
+ * @mixin \Eloquent
  */
 class ForumPost extends Model {
 
@@ -38,7 +34,9 @@ class ForumPost extends Model {
     protected $table = "forum_post";
 
     function getPage() {
-        return ceil(ForumPost::where("topic", "=", $this->topic)->count() / ForumPost::$postsPerPage);
+        return \Cache::remember('topic_page-'.$this->id, 1, function(){
+            return ceil(ForumPost::where("topic", "=", $this->topic)->count() / ForumPost::$postsPerPage);
+        });
     }
 
     function user(){
@@ -47,6 +45,9 @@ class ForumPost extends Model {
         });
     }
 
+    /**
+     * @return ForumTopic|null
+     */
     function topic(){
         return \Cache::remember('forum_topic-'.$this->topic, 0, function(){
             return ForumTopic::find($this->topic);

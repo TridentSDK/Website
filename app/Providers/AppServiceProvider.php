@@ -4,6 +4,8 @@ namespace TridentSDK\Providers;
 
 use Captcha\Captcha;
 use Illuminate\Support\ServiceProvider;
+use TridentSDK\ForumPost;
+use TridentSDK\ForumTopic;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -43,6 +45,14 @@ class AppServiceProvider extends ServiceProvider {
                 "Web API"       => "https://apidocs.tridentsdk.net/"
             )
         ));
+
+        ForumPost::created(function (ForumPost $post){
+            $post->topic()->category()->newPost($post->id);
+        });
+
+        ForumTopic::created(function (ForumTopic $topic){
+            $topic->category()->newTopic($topic);
+        });
     }
 
     /**
