@@ -24,7 +24,7 @@ Route::get('/home', function () {
     $tridentSDKCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentSDKCommit")->first()->value);
     $tridentCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentCommit")->first()->value);
     $latestPlugins = \TridentSDK\Plugin::whereAccepted(true)->orderBy("updated_at", "DESC")->limit(5)->get();
-    $latestPosts = \TridentSDK\ForumPost::latest()->get();
+    $latestPosts = \TridentSDK\ForumPost::latestPosts();
 
     return view('home.layout', [
         "news" => $news,
@@ -100,3 +100,4 @@ Route::get('/forum/edit/{id}', 'ForumController@editPost');
 Route::post('/forum/edit/{id}/save', 'ForumController@savePost');
 Route::get('/forum/new/topic/{category}', 'ForumController@newTopic');
 Route::post('/forum/new/topic/{category}/post', 'ForumController@postTopic');
+Route::post('/forum/new/post/{topic}/post', 'ForumController@postPost');

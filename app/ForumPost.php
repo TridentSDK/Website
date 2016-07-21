@@ -73,4 +73,17 @@ class ForumPost extends Model {
         return "/forum/topic/".$this->topic.($page > 1 ? "?page=".$page : "")."#post-".$this->id;
     }
 
+    /**
+     * @param int $count
+     * @return array|\Illuminate\Database\Eloquent\Collection|static[]
+     */
+    static function latestPosts($count = 5){
+        return ForumPost::selectRaw("`forum_post`.* 
+            FROM `forum_post` 
+            INNER JOIN (SELECT *, max(`created_at`) AS `latest` FROM `forum_post` GROUP BY `topic` ORDER BY `created_at` DESC) `grouped`
+            ON `forum_post`.`created_at` = `grouped`.`latest`
+            ORDER BY id DESC
+            LIMIT ".$count."#")->get(); // That hash is necessary, Laravel adds stuff after, there should be a toggle for this
+    }
+
 }

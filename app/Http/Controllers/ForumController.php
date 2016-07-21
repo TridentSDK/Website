@@ -166,4 +166,37 @@ class ForumController extends Controller {
         ]);
     }
 
+    public function postPost($topic){
+        if(!is_numeric($topic)){
+            return redirect("/forum");
+        }
+
+        $topic = \TridentSDK\ForumPost::find($topic);
+
+        if($topic == null || !\Auth::check()){
+            return redirect("/forum");
+        }
+
+        if(empty(trim(strip_tags(\Request::get("post_text"))))){
+            return redirect()->back()->withInput(Input::all())->withErrors("Topic text can't be empty!", "post");
+        }
+
+        $post = new ForumPost();
+        $post->userid = \Auth::user()->id;
+        $post->text = \Request::get("post_text");
+        $post->topic = $topic->id;
+        $post->save();
+
+        $url = "/forum/topic/".$topic->id;
+        $page = $post->getPage();
+
+        if($page > 1){
+            $url .= "?page=".$page;
+        }
+
+        $url .= "#post-".$post->id;
+
+        return redirect($url);
+    }
+
 }

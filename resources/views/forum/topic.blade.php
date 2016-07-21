@@ -71,6 +71,42 @@
     </div>
 
     @if(Auth::check())
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">New Post</h3></div>
+            <div class="panel-body" style="padding: 0 15px;">
 
+                @if($errors->getBag("topic")->any())
+                    @include("utils.alert", ["message" => $errors->getBag("topic")->first(), "close" => false, "spacedown" => false])
+                @endif
+
+                <div class="row">
+                    <div class="col-md-2" style="padding: 15px">
+                        <div class="thumbnail">
+                            <a href="/user/{{ Auth::user()->id }}/">
+                                <img src="{{ Auth::user()->getAvatar(155) }}" alt="Avatar of {{ Auth::user()->username }}">
+                            </a>
+                            <div class="caption">
+                                <a href="/user/{{ Auth::user()->id }}/">{{ Auth::user()->username }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10" style="padding: 15px; min-height: 280px; border-left: 1px solid #dddddd;">
+                        {!! Form::open(["style", "margin-bottom: 0", "url" => "/forum/new/post/".$topic->id."/post"]) !!}
+
+                        {!! Form::textarea("post_text", null, ["id" => "post_text"]) !!}
+
+                        <script>
+                            $(document).ready(function () {
+                                $('#post_text').summernote({minHeight: 200});
+                            });
+                        </script>
+
+                        {!! Form::submit("Post", ["class" => "btn btn-success btn-raised pull-right"]) !!}
+
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
 @stop
