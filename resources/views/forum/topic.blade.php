@@ -29,7 +29,7 @@
                             <span class="label label-success">Online {{-- TODO Check if actually online --}}</span>
                         </div>
                         <div class="col-md-10" style="padding: 15px; border-left: 1px solid #dddddd;">
-                            <div style="min-height: 270px;">{!! $post->text !!}</div>
+                            <div style="min-height: 200px;">{!! $post->text !!}</div>
                             @if($post->lastuserid > 0)
                                 <div class="pull-left">
                                     <small>
@@ -37,23 +37,22 @@
                                     </small>
                                 </div>
                             @endif
-                            <div class="pull-right" style="margin-left: 10px">
-                                <small>
-                                    <span class="badge">0</span>
-                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                                </small>
-                            </div>
                             <div class="pull-right">
                                 <small>
                                     @if($first)
-                                        <a href="/forum/topic/{{ $topic->id }}/lock/">LOCK</a>
-                                        <a href="/forum/topic/{{ $topic->id }}/stick/">STICK</a>
-                                        <a href="/forum/topic/{{ $topic->id }}/delete/">DELETE</a>
+                                        <a href="/forum/topic/{{ $topic->id }}/stick/" class="btn btn-xs btn-warning btn-raised">STICK</a>
+                                        <a href="/forum/topic/{{ $topic->id }}/lock/" class="btn btn-xs btn-danger btn-raised">LOCK</a>
+                                        <a href="/forum/topic/{{ $topic->id }}/delete/" class="btn btn-xs btn-danger btn-raised">DELETE</a>
                                     @else
-                                        <a href="/forum/post/{{ $post->id }}/delete/">DELETE</a>
+                                        <a href="/forum/post/{{ $post->id }}/delete/" class="btn btn-xs btn-danger btn-raised">DELETE</a>
                                     @endif
 
-                                    <a href="/forum/edit/{{ $post->id }}/">EDIT</a>
+                                    <a href="/forum/edit/{{ $post->id }}/" class="btn btn-xs btn-info btn-raised">EDIT</a>
+
+                                    <div class="btn btn-xs btn-success btn-raised">
+                                        <span class="badge" style="margin-right: 3px">0</span>
+                                        <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px; margin-top: -10px; top: 4px;" aria-hidden="true"></span>
+                                    </div>
                                 </small>
                             </div>
                         </div>
