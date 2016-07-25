@@ -101,3 +101,5 @@ Route::post('/forum/edit/{id}/save', 'ForumController@savePost');
 Route::get('/forum/new/topic/{category}', 'ForumController@newTopic');
 Route::post('/forum/new/topic/{category}/post', 'ForumController@postTopic');
 Route::post('/forum/new/post/{topic}/post', 'ForumController@postPost');
+Route::post('/forum/post/{post}/delete', 'ForumController@deletePost');
+Route::post('/forum/topic/{topic}/delete', 'ForumController@deleteTopic');
