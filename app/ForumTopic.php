@@ -58,13 +58,11 @@ class ForumTopic extends Model {
      * @return ForumPost|null
      */
     public function lastReply(){
-        return \Cache::remember('lastpost-'.$this->id, 0, function(){
-            if($this->replyCount() == 0){
-                return null;
-            }
+        if($this->replyCount() == 0){
+            return null;
+        }
 
-            return ForumPost::whereTopic($this->id)->orderBy("created_at", "DESC")->first();
-        });
+        return ForumPost::whereTopic($this->id)->orderBy("created_at", "DESC")->first();
     }
 
     /**
