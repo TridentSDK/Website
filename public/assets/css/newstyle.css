@@ -261,3 +261,7 @@ img.build-status {
 	height: 200px;
 	margin: -200px 0 0;
 }
+
+.forum-post-buttons .btn {
+	margin-bottom: 0;
+}
