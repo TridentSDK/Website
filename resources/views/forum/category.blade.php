@@ -64,7 +64,7 @@
                         <td>{{ $topic->replyCount() }}</td>
                         @php($lastReply = $topic->lastReply())
                         @if($lastReply)
-                            <td><a href="/user/{{ $lastReply->user()->id }}/">{{ $lastReply->user()->username }}</a><a href="{{ $lastReply->url() }}">, {{ $lastReply->created_at->diffForHumans() }}</a></td>
+                            <td><a href="/user/{{ $lastReply->user()->id }}/">{{ $lastReply->user()->username }}</a>, <a href="{{ $lastReply->url() }}">{{ $lastReply->created_at->diffForHumans() }}</a></td>
                         @else
                             <td>None</td>
                         @endif
