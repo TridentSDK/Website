@@ -53,10 +53,6 @@ class AppServiceProvider extends ServiceProvider {
         ForumTopic::created(function (ForumTopic $topic){
             $topic->category()->newTopic($topic);
         });
-
-        if(!\Auth::check() || \Auth::user()->developer == false){
-            \Debugbar::disable();
-        }
     }
 
     /**
