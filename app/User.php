@@ -28,6 +28,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property boolean $rehashed
+ * @property boolean $developer
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereUsername($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User wherePassword($value)
@@ -49,6 +50,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereRehashed($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereDeveloper($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable {
