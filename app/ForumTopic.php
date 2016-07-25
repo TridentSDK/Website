@@ -49,7 +49,7 @@ class ForumTopic extends Model {
      * @return int
      */
     public function replyCount(){
-        return \Cache::remember('replyCount-'.$this->id, 1, function(){
+        return \Cache::remember('replyCount-'.$this->id, 0, function(){
             return ForumPost::whereTopic($this->id)->count() - 1;
         });
     }
@@ -59,7 +59,11 @@ class ForumTopic extends Model {
      */
     public function lastReply(){
         return \Cache::remember('lastpost-'.$this->id, 0, function(){
-            return ForumPost::whereTopic($this->id)->orderBy("created_at", "DESC")->skip(1)->first();
+            if($this->replyCount() == 0){
+                return null;
+            }
+
+            return ForumPost::whereTopic($this->id)->orderBy("created_at", "DESC")->first();
         });
     }
 
