@@ -3,6 +3,7 @@
 namespace TridentSDK;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use TridentSDK\Enums\UserRank;
 
 /**
  * TridentSDK\User
@@ -89,6 +90,13 @@ class User extends Authenticatable {
 
     public function recentPosts($count = 14){
         return ForumPost::getModel()->innerTopic()->where("forum_post.userid", "=", $this->id)->orderBy("forum_post.created_at", "DESC")->limit($count)->get();
+    }
+
+    /**
+     * @return UserRank
+     */
+    public function rank(){
+        return UserRank::getRank($this->rank);
     }
 
 }
