@@ -32,7 +32,7 @@
                             <div class="thumbnail">
                                 <a href="/user/{{ $post->user()->id }}/"><img src="{{ $post->user()->getAvatar(155) }}" alt="Avatar of {{ $post->user()->username }}"></a>
                                 <div class="caption">
-                                    <a href="/user/{{ $post->user()->id }}/">{{ $post->user()->username }}</a>, Member {{-- TODO Get actual rank --}}
+                                    <a href="/user/{{ $post->user()->id }}/">{{ $post->user()->username }}</a>, {{ $post->user()->rank()->getName() }}
                                 </div>
                             </div>
                             <span class="label label-success">Online {{-- TODO Check if actually online --}}</span>
