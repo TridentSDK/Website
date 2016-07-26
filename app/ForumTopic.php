@@ -3,6 +3,7 @@
 namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * TridentSDK\ForumTopic
@@ -30,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class ForumTopic extends Model {
+
+    use SoftDeletes;
 
     protected $table = "forum_topic";
 

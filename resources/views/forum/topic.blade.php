@@ -4,8 +4,17 @@
 
     @include("forum.breadcrumbs")
 
+    @if (session('post-deleted'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            Post Deleted
+        </div>
+    @endif
+
     <div class="posts">
-        @php($first = true)
+        @php($first = $posts->currentPage() == 1)
         @foreach($posts as $post)
             <div class="panel panel-{{ $first ? "info" : "default" }}">
                 <div class="panel-heading clearfix">
@@ -38,15 +47,19 @@
                                 </div>
                             @endif
                             <div class="pull-right forum-post-buttons">
-                                @if($first)
-                                    <a href="/forum/topic/{{ $topic->id }}/stick/" class="btn btn-xs btn-warning btn-raised">STICK</a>
-                                    <a href="/forum/topic/{{ $topic->id }}/lock/" class="btn btn-xs btn-danger btn-raised">LOCK</a>
-                                    <a href="/forum/topic/{{ $topic->id }}/delete/" class="btn btn-xs btn-danger btn-raised">DELETE</a>
-                                @else
-                                    <a href="/forum/post/{{ $post->id }}/delete/" class="btn btn-xs btn-danger btn-raised">DELETE</a>
+                                @if(Auth::check() && Auth::getUser()->rank()->isModerator())
+                                    @if($first)
+                                        <a href="/forum/topic/{{ $topic->id }}/stick/" class="btn btn-xs btn-warning btn-raised">STICK</a>
+                                        <a href="/forum/topic/{{ $topic->id }}/lock/" class="btn btn-xs btn-danger btn-raised">LOCK</a>
+                                        <button type="button" class="btn btn-xs btn-danger btn-raised" data-toggle="modal" data-target="#deleteTopicModal" data-topic="{{ $topic->id }}">DELETE</button>
+                                    @else
+                                        <button type="button" class="btn btn-xs btn-danger btn-raised" data-toggle="modal" data-target="#deletePostModal" data-post="{{ $post->id }}">DELETE</button>
+                                    @endif
                                 @endif
 
-                                <a href="/forum/edit/{{ $post->id }}/" class="btn btn-xs btn-info btn-raised">EDIT</a>
+                                @if(Auth::check() && $post->canBeEditedBy(Auth::getUser()))
+                                    <a href="/forum/edit/{{ $post->id }}/" class="btn btn-xs btn-info btn-raised">EDIT</a>
+                                @endif
 
                                 <div class="btn btn-xs btn-success btn-raised">
                                     <span class="badge" style="margin-right: 3px">0</span>
@@ -106,4 +119,7 @@
             </div>
         </div>
     @endif
+
+    @include("forum.delete-post-modal")
+    @include("forum.delete-topic-modal")
 @stop

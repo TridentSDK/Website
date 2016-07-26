@@ -3,6 +3,7 @@
 namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * TridentSDK\Denial
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class Denial extends Model {
+
+    use SoftDeletes;
 
     protected $table = "denial";
 

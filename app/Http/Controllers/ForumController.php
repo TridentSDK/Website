@@ -68,7 +68,7 @@ class ForumController extends Controller {
             return redirect("/forum");
         }
 
-        if(!\Auth::user() || (\Auth::user()->id != $post->userid && \Auth::user()->rank < 100)){
+        if(!\Auth::user() || !$post->canBeEditedBy(\Auth::user())){
             return redirect("/forum/topic/".$post->topic);
         }
 
@@ -88,7 +88,7 @@ class ForumController extends Controller {
             return redirect("/forum");
         }
 
-        if(!\Auth::user() || (\Auth::user()->id != $post->userid && \Auth::user()->rank < 100)){
+        if(!\Auth::user() || !$post->canBeEditedBy(\Auth::user())){
             return redirect("/forum/topic/".$post->topic);
         }
 
@@ -171,14 +171,14 @@ class ForumController extends Controller {
             return redirect("/forum");
         }
 
-        $topic = \TridentSDK\ForumPost::find($topic);
+        $topic = \TridentSDK\ForumTopic::find($topic);
 
         if($topic == null || !\Auth::check()){
             return redirect("/forum");
         }
 
         if(empty(trim(strip_tags(\Request::get("post_text"))))){
-            return redirect()->back()->withInput(Input::all())->withErrors("Topic text can't be empty!", "post");
+            return redirect()->back()->withInput(Input::all())->withErrors("Post text can't be empty!", "post");
         }
 
         $post = new ForumPost();
@@ -197,6 +197,46 @@ class ForumController extends Controller {
         $url .= "#post-".$post->id;
 
         return redirect($url);
+    }
+
+    public function deletePost($post){
+        if(!is_numeric($post)){
+            return redirect("/forum");
+        }
+
+        $post = \TridentSDK\ForumPost::find($post);
+
+        if($post == null){
+            return redirect("/forum");
+        }
+
+        if(!\Auth::check() || !\Auth::getUser()->rank()->isModerator()){
+            return redirect($post->url());
+        }
+
+        $post->delete();
+
+        return redirect("/forum/topic/".$post->topic)->with("post-deleted", true);
+    }
+
+    public function deleteTopic($topic){
+        if(!is_numeric($topic)){
+            return redirect("/forum");
+        }
+
+        $topic = \TridentSDK\ForumTopic::find($topic);
+
+        if($topic == null){
+            return redirect("/forum");
+        }
+
+        if(!\Auth::check() || !\Auth::getUser()->rank()->isModerator()){
+            return redirect($topic->url());
+        }
+
+        $topic->delete();
+
+        return redirect("/forum")->with("topic-deleted", true);
     }
 
 }

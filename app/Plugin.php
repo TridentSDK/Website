@@ -3,6 +3,7 @@
 namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * TridentSDK\Plugin
@@ -50,6 +51,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class Plugin extends Model {
+
+    use SoftDeletes;
 
     protected $table = "plugin";
 

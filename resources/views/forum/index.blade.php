@@ -3,6 +3,15 @@
 @section('content')
     @include("forum.breadcrumbs", ["breadcrumbs" => array()])
 
+    @if (session('topic-deleted'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            Topic Deleted
+        </div>
+    @endif
+
     @foreach($categories as $category)
         <div class="panel panel-info">
             <div class="panel-heading">

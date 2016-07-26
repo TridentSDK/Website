@@ -4,6 +4,7 @@ namespace TridentSDK;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use TridentSDK\Enums\UserRank;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * TridentSDK\User
@@ -55,6 +56,8 @@ use TridentSDK\Enums\UserRank;
  * @mixin \Eloquent
  */
 class User extends Authenticatable {
+
+    use SoftDeletes;
 
     protected $table = "user";
 

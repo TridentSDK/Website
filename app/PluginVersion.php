@@ -3,6 +3,7 @@
 namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * TridentSDK\PluginVersion
@@ -32,6 +33,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class PluginVersion extends Model {
+
+    use SoftDeletes;
 
     protected $table = "plugin_version";
 

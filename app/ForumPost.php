@@ -4,6 +4,7 @@ namespace TridentSDK;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * TridentSDK\ForumPost
@@ -29,6 +30,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class ForumPost extends Model {
+
+    use SoftDeletes;
 
     private static $postsPerPage = 10;
     protected $table = "forum_post";
@@ -71,6 +74,18 @@ class ForumPost extends Model {
     function url(){
         $page = $this->getPage();
         return "/forum/topic/".$this->topic.($page > 1 ? "?page=".$page : "")."#post-".$this->id;
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    function canBeEditedBy(User $user){
+        if($user->id == $this->userid || $user->rank()->isModerator()){
+            return true;
+        }
+
+        return false;
     }
 
     /**
