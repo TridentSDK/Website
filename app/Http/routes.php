@@ -11,15 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthController@login');
-Route::get('logout', 'AuthController@logout');
-
-Route::get('/home', function () {
+$home = function () {
     $news = \TridentSDK\NewsArticle::orderBy("created_at", "DESC")->paginate(4);
     $tridentSDKCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentSDKCommit")->first()->value);
     $tridentCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentCommit")->first()->value);
@@ -33,7 +25,14 @@ Route::get('/home', function () {
         "latestPlugins" => $latestPlugins,
         "latestPosts" => $latestPosts
     ]);
-});
+};
+
+Route::get('/', $home);
+Route::get('/home', $home);
+
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
 
 Route::get('/members', function () {
     $members = \TridentSDK\User::orderBy("id", "ASC")->paginate(18);
