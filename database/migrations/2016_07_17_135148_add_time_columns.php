@@ -11,45 +11,65 @@ class AddTimeColumns extends Migration {
      * @return void
      */
     public function up(){
-        Schema::table('comment', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('comment', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('denial', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('denial', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('forum_post_like', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('forum_post_like', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('forum_post', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('forum_post', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('forum_topic', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('forum_topic', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('log', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('log', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('message', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('message', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('news_article', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('news_article', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('plugin', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('plugin', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
-        Schema::table('plugin_version', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        try{
+            Schema::table('plugin_version', function (Blueprint $table) {
+                $table->timestamps();
+            });
+        }catch (Exception $e){}
 
         DB::update("UPDATE tridentsdk.comment SET comment.created_at = FROM_UNIXTIME(comment.date)");
         DB::update("UPDATE tridentsdk.denial SET denial.created_at = FROM_UNIXTIME(denial.date)");
