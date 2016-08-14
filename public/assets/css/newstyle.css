@@ -265,3 +265,18 @@ img.build-status {
 .forum-post-buttons .btn {
 	margin-bottom: 0;
 }
+
+.navbar.navbar-info .dropdown-menu {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.navbar.navbar-info .dropdown-menu li:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+}
+
+.navbar.navbar-info .dropdown-menu li:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}

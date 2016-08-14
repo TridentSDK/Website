@@ -92,7 +92,7 @@ class User extends Authenticatable {
     }
 
     public function recentPosts($count = 14){
-        return ForumPost::getModel()->innerTopic()->where("forum_post.userid", "=", $this->id)->orderBy("forum_post.created_at", "DESC")->limit($count)->get();
+        return ForumPost::getModel()->existsTopic()->where("forum_post.userid", "=", $this->id)->orderBy("forum_post.created_at", "DESC")->limit($count)->get();
     }
 
     /**
@@ -100,6 +100,11 @@ class User extends Authenticatable {
      */
     public function rank(){
         return UserRank::getRank($this->rank);
+    }
+
+    public function updateLastOnline(){
+        $this->last_online = time();
+        $this->save();
     }
 
 }

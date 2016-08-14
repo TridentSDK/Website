@@ -1,8 +1,8 @@
 @if(Auth::check())
     <li class="dropdown"><a data-toggle="dropdown" href="#">{{ Auth::getUser()->username }} <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li class="btn-success"><a href="/user/1/"><strong>Account</strong></a></li>
-            <li class="btn-danger"><a href="/logout/"><strong>Logout</strong></a></li>
+            <li><a href="/user/1/">Account</a></li>
+            <li><a href="/logout/">Logout</a></li>
         </ul>
     </li>
 @else

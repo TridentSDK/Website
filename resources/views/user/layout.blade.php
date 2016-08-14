@@ -48,7 +48,7 @@
                                         <tbody>
                                             @foreach($user->recentPosts(14) as $post)
                                                 <tr>
-                                                    <td><a href="/f/t/{{ $post->topic()->id }}/">{{ $post->name }}</a></td>
+                                                    <td><a href="{{ $post->url() }}">{{ $post->topic()->name }}</a></td>
                                                     <td>{{ $post->created_at->diffForHumans() }}</td>
                                                 </tr>
                                             @endforeach
@@ -70,7 +70,7 @@
                                         <tbody>
                                         @foreach($user->recentTopics(14) as $topic)
                                             <tr>
-                                                <td><a href="/f/t/{{ $topic->id }}/">{{ $topic->name }}</a></td>
+                                                <td><a href="/forum/topic/{{ $topic->id }}/">{{ $topic->name }}</a></td>
                                                 <td>{{ $topic->created_at->diffForHumans() }}</td>
                                             </tr>
                                         @endforeach

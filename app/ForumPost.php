@@ -37,8 +37,16 @@ class ForumPost extends Model {
     protected $table = "forum_post";
 
     function getPage() {
-        return \Cache::remember('topic_page-'.$this->id, 1, function(){
-            return ceil(ForumPost::where("topic", "=", $this->topic)->count() / ForumPost::$postsPerPage);
+        return \Cache::remember('post_page-'.$this->id, 1, function(){
+            $query = \DB::select("SELECT (@i := @i + 1) AS row, id FROM forum_post CROSS JOIN (SELECT @i := 0) AS dummy WHERE topic = ? AND deleted_at is null ORDER BY created_at ASC", [$this->topic]);
+
+            foreach ($query as $v){
+                if($v->id == $this->id){
+                    return ceil($v->row / ForumPost::$postsPerPage);
+                }
+            }
+
+            return 1;
         });
     }
 
@@ -61,8 +69,13 @@ class ForumPost extends Model {
         return $query->where("deleted", "=", 0)->groupBy("topic")->orderBy("created_at", "DESC")->limit($count);
     }
 
-    function scopeInnerTopic(Builder $query){
-        return $query->join("forum_topic", "forum_post.topic", "=", "forum_topic.id")->where("forum_post.deleted", "=", false)->where("forum_topic.deleted", "=", false);
+    function scopeExistsTopic(Builder $query){
+        return $query->whereExists(function ($query){
+            $query->select(\DB::raw(1))
+                ->from("forum_topic")
+                ->whereRaw("id = `forum_post`.`topic`")
+                ->whereNull("deleted_at");
+        });
     }
 
     function lastUser(){
