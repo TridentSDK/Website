@@ -78,6 +78,16 @@ class ForumPost extends Model {
         });
     }
 
+    function scopeTopicCategory(Builder $query, $category){
+        return $query->whereExists(function ($query) use ($category) {
+            $query->select(\DB::raw(1))
+                ->from("forum_topic")
+                ->whereRaw("`id` = `forum_post`.`topic`")
+                ->whereNull("deleted_at")
+                ->where("category", "=", $category);
+        })->whereNull("deleted_at");
+    }
+
     function lastUser(){
         return \Cache::remember('user-'.$this->lastuserid, 0, function(){
             return User::find($this->lastuserid);

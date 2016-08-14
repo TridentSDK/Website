@@ -45,12 +45,33 @@ class ForumCategory extends Model {
     }
 
     public function lastPost(){
-        if($this->lastpost == 0){
-            return null;
-        }
+        return \Cache::remember('lastpost_'.$this->id, 1, function(){
+            $latestPost = ForumPost::getModel()->topicCategory($this->id)->orderBy("created_at", "DESC")->limit(1)->first();
 
-        return \Cache::remember('post-'.$this->lastpost, 0, function(){
-            return ForumPost::find($this->lastpost);
+            if($this->hasChildren()) {
+                $children = $this->children();
+                $childrenToCheck = array();
+
+                foreach ($children as $child){
+                    array_push($childrenToCheck, $child->id);
+                }
+
+                while (count($childrenToCheck) > 0) {
+                    $check = array_pop($childrenToCheck);
+                    $category = ForumCategory::find($check);
+                    $thisLatestPost = ForumPost::getModel()->topicCategory($category->id)->orderBy("created_at", "DESC")->limit(1)->first();
+
+                    if($thisLatestPost->created_at > $latestPost->created_at){
+                        $latestPost = $thisLatestPost;
+                    }
+
+                    if($category->hasChildren()){
+                        array_push($childrenToCheck, $category->id);
+                    }
+                }
+            }
+
+            return $latestPost;
         });
     }
 
