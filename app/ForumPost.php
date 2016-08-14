@@ -120,6 +120,8 @@ class ForumPost extends Model {
             FROM `forum_post` 
             INNER JOIN (SELECT *, max(`created_at`) AS `latest` FROM `forum_post` GROUP BY `topic` ORDER BY `created_at` DESC) `grouped`
             ON `forum_post`.`created_at` = `grouped`.`latest`
+            WHERE EXISTS (select 1 from `forum_topic` where `id` = `forum_post`.`topic` and `deleted_at` is null)
+            AND `forum_post`.`deleted_at` is null
             ORDER BY id DESC
             LIMIT ".$count."#")->get(); // That hash is necessary, Laravel adds stuff after, there should be a toggle for this
     }
