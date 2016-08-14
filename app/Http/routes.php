@@ -102,3 +102,21 @@ Route::post('/forum/new/topic/{category}/post', 'ForumController@postTopic');
 Route::post('/forum/new/post/{topic}/post', 'ForumController@postPost');
 Route::get('/forum/post/{post}/delete', 'ForumController@deletePost');
 Route::get('/forum/topic/{topic}/delete', 'ForumController@deleteTopic');
+
+Route::post('/github/{token}', function ($token){
+    if($token == $_ENV["GITHUB_TRIDENT_KEY"]){
+        $commit = (json_decode($GLOBALS["HTTP_RAW_POST_DATA"])->commits[0]);
+        unset($commit->committer);
+        unset($commit->added);
+        unset($commit->removed);
+        unset($commit->modified);
+        \DB::table("config")->where("key", "=", "tridentCommit")->update(["value" => json_encode($commit)]);
+    }else if($token == $_ENV["GITHUB_TRIDENTSDK_KEY"]){
+        $commit = (json_decode($GLOBALS["HTTP_RAW_POST_DATA"])->commits[0]);
+        unset($commit->committer);
+        unset($commit->added);
+        unset($commit->removed);
+        unset($commit->modified);
+        \DB::table("config")->where("key", "=", "tridentSDKCommit")->update(["value" => json_encode($commit)]);
+    }
+});
