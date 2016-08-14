@@ -18,7 +18,7 @@
                     </div>
                     <div class="panel-body">
                         <span class="da">Last Online</span>
-                        <span class="dd">{{ $user->last_online == 0 ? "Never" : \Carbon\Carbon::createFromTimestamp($user->last_online)->diffForHumans() }}</span>
+                        <span class="dd">{{ $user->last_online == 0 ? "Never" : (time() - $user->last_online < 300 ? "Now" : \Carbon\Carbon::createFromTimestamp($user->last_online)->diffForHumans()) }}</span>
                         <span class="da">Joined</span>
                         <span class="dd">{{ $user->created_at->diffForHumans() }}</span>
                         <span class="da">Topics</span>
