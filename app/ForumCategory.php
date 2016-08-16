@@ -65,7 +65,7 @@ class ForumCategory extends Model {
                     $category = ForumCategory::find($check);
                     $thisLatestPost = ForumPost::getModel()->topicCategory($category->id)->orderBy("created_at", "DESC")->limit(1)->first();
 
-                    if($thisLatestPost->created_at > $latestPost->created_at){
+                    if($latestPost == null || $thisLatestPost->created_at > $latestPost->created_at){
                         $latestPost = $thisLatestPost;
                     }
 
