@@ -44,6 +44,10 @@ class ForumController extends Controller {
             return redirect("/forum");
         }
 
+        if(\Auth::check()){
+            $topic->registerView(\Auth::user());
+        }
+
         $posts = $topic->posts(true);
         $enum = $posts->currentPage() * $posts->perPage() - $posts->perPage() + 1;
         $breadcrumbs = ForumCategory::find($topic->category)->breadCrumbs();

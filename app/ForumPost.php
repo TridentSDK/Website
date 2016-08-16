@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean $deleted
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost existsTopic()
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost topicCategory($category)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost latest($count = 5)

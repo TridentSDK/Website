@@ -16,6 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $topics
  * @property integer $posts
  * @property string $description
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumCategory whereParent($value)

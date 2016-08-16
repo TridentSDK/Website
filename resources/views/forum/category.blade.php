@@ -52,6 +52,7 @@
                 <tr>
                     <th style="border-bottom: 0">Title</th>
                     <th style="border-bottom: 0">Started</th>
+                    <th style="border-bottom: 0">Views</th>
                     <th style="border-bottom: 0">Replies</th>
                     <th style="border-bottom: 0">Last Reply</th>
                 </tr>
@@ -61,6 +62,7 @@
                     <tr>
                         <td><a href="{{ $topic->url() }}">{{ $topic->name }}</a></td>
                         <td>{{ $topic->created_at->diffForHumans() }}</td>
+                        <td>{{ $topic->viewCount() }}</td>
                         <td>{{ $topic->replyCount() }}</td>
                         @php($lastReply = $topic->lastReply())
                         @if($lastReply)

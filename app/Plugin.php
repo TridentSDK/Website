@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $license
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereId($value)

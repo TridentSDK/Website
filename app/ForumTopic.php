@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $locked
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumTopic whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumTopic whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumTopic whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumTopic whereId($value)
@@ -57,6 +59,12 @@ class ForumTopic extends Model {
         });
     }
 
+    public function viewCount(){
+        return \Cache::remember('viewCount-'.$this->id, 1, function(){
+            return View::whereTopicId($this->id)->count();
+        });
+    }
+
     /**
      * @return ForumPost|null
      */
@@ -75,6 +83,21 @@ class ForumTopic extends Model {
         return \Cache::remember('category-'.$this->category, 0, function(){
             return ForumCategory::find($this->category);
         });
+    }
+
+    /**
+     * @param $user User
+     */
+    public function registerView($user){
+        $hasViewedInPastDay = View::whereTopicId($this->id)->whereUserId($user->id)->where("date", ">=", time() - 86400)->exists();
+
+        if(!$hasViewedInPastDay){
+            $view = new View();
+            $view->topic_id = $this->id;
+            $view->user_id = $user->id;
+            $view->date = time();
+            $view->save();
+        }
     }
 
 }

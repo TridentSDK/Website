@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $updated_at
  * @property boolean $rehashed
  * @property boolean $developer
+ * @property string $deleted_at
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereUsername($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User wherePassword($value)
