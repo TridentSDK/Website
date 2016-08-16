@@ -109,4 +109,8 @@ class User extends Authenticatable {
         $this->save();
     }
 
+    public function isOnline(){
+        return time() - $this->last_online < 300;
+    }
+
 }

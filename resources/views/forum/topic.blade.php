@@ -15,7 +15,27 @@
 
     <div class="posts">
         @php($first = $posts->currentPage() == 1)
+        @php($lastPostDate = null)
         @foreach($posts as $post)
+            @if($lastPostDate == null)
+                @php($lastPostDate = $post->created_at)
+            @else
+                @if($lastPostDate->diffInYears($post->created_at) >= 1)
+                    <div class="alert alert-primary alert-no-margin" role="alert">
+                        <span href="#" class="alert-link">{{ $lastPostDate->diffInYears($post->created_at) }} year{{ $lastPostDate->diffInYears($post->created_at) > 1 ? "s" : "" }} later</span>
+                    </div>
+                @elseif($lastPostDate->diffInMonths($post->created_at) >= 1)
+                    <div class="alert alert-primary alert-no-margin" role="alert">
+                        <span href="#" class="alert-link">{{ $lastPostDate->diffInMonths($post->created_at) }} month{{ $lastPostDate->diffInMonths($post->created_at) > 1 ? "s" : "" }} later</span>
+                    </div>
+                @elseif($lastPostDate->diffInWeeks($post->created_at) >= 1)
+                    <div class="alert alert-primary alert-no-margin" role="alert">
+                        <span href="#" class="alert-link">{{ $lastPostDate->diffInWeeks($post->created_at) }} week{{ $lastPostDate->diffInWeeks($post->created_at) > 1 ? "s" : "" }} later</span>
+                    </div>
+                @endif
+
+                @php($lastPostDate = $post->created_at)
+            @endif
             <div class="panel panel-{{ $first ? "info" : "default" }}">
                 <div class="panel-heading clearfix">
                     <span class="title-linker" id="post-{{ $post->id }}"></span>
@@ -35,7 +55,8 @@
                                     <a href="/user/{{ $post->user()->id }}/">{{ $post->user()->username }}</a>, {{ $post->user()->rank()->getName() }}
                                 </div>
                             </div>
-                            <span class="label label-success">Online {{-- TODO Check if actually online --}}</span>
+                            @php($online = $post->user()->isOnline())
+                            <span class="label label-{{ $online ? "success" : "danger" }}">{{ $online ? "Online" : "Offline" }}</span>
                         </div>
                         <div class="col-md-10" style="padding: 15px; border-left: 1px solid #dddddd;">
                             <div style="min-height: 200px;">{!! $post->text !!}</div>

@@ -80,7 +80,10 @@ class ForumCategory extends Model {
     }
 
     public function pageTopics($perPage = 20){
-        return ForumTopic::whereCategory($this->id)->whereDeleted(false)->orderBy("updated_at", "DESC")->paginate($perPage);
+        return ForumTopic::whereCategory($this->id)
+            ->selectRaw("*, ( SELECT `created_at` FROM `forum_post` WHERE `forum_post`.`topic` = `forum_topic`.`id` and `forum_post`.`deleted_at` is null ORDER BY `created_at` DESC LIMIT 1 ) as lastPostDate")
+            ->orderByRaw("lastPostDate DESC")
+            ->paginate($perPage);
     }
 
     public function hasChildren(){

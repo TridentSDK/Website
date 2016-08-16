@@ -280,3 +280,7 @@ img.build-status {
 	border-bottom-left-radius: 2px;
 	border-bottom-right-radius: 2px;
 }
+
+.alert-no-margin {
+	margin-bottom: 0;
+}
