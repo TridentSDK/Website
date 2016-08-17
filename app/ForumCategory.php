@@ -45,12 +45,50 @@ class ForumCategory extends Model {
     }
 
     public function children(){
-        return ForumCategory::whereParent($this->id)->get();
+        return ForumCategory::whereParent($this->id)->orderBy("rank", "DESC")->get();
+    }
+
+    public function childrenTree($flat = false){
+        $tree = $this->getChildren();
+
+        if($flat){
+            return $this->getAsFlat($tree);
+        }
+
+        return $tree;
+    }
+
+    private function getAsFlat($tree, $depth = 0){
+        $flat = array();
+        array_push($flat, array($depth, $tree["self"]));
+        foreach ($tree["children"] as $child){
+            foreach ($this->getAsFlat($child, $depth + 1) as $f){
+                array_push($flat, $f);
+            }
+        }
+        return $flat;
+    }
+
+    private function getChildren(){
+        $tree = array("self" => $this, "children" => array());
+
+        if($this->hasChildren()){
+            $children = $this->children();
+            $treeChildren = array();
+
+            foreach ($children as $child){
+                array_push($treeChildren, $child->getChildren());
+            }
+
+            $tree["children"] = $treeChildren;
+        }
+
+        return $tree;
     }
 
     public function lastPost(){
         return \Cache::remember('lastpost_'.$this->id, 1, function(){
-            $latestPost = ForumPost::getModel()->topicCategory($this->id)->orderBy("created_at", "DESC")->limit(1)->first();
+            $latestPost = ForumPost::getModel()->topicCategory($this->id)->wherePostType("NORMAL")->orderBy("created_at", "DESC")->limit(1)->first();
 
             if($this->hasChildren()) {
                 $children = $this->children();
@@ -63,7 +101,7 @@ class ForumCategory extends Model {
                 while (count($childrenToCheck) > 0) {
                     $check = array_pop($childrenToCheck);
                     $category = ForumCategory::find($check);
-                    $thisLatestPost = ForumPost::getModel()->topicCategory($category->id)->orderBy("created_at", "DESC")->limit(1)->first();
+                    $thisLatestPost = ForumPost::getModel()->topicCategory($category->id)->wherePostType("NORMAL")->orderBy("created_at", "DESC")->limit(1)->first();
 
                     if($latestPost == null || $thisLatestPost->created_at > $latestPost->created_at){
                         $latestPost = $thisLatestPost;

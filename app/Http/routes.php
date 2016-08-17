@@ -102,6 +102,7 @@ Route::post('/forum/new/topic/{category}/post', 'ForumController@postTopic');
 Route::post('/forum/new/post/{topic}/post', 'ForumController@postPost');
 Route::get('/forum/post/{post}/delete', 'ForumController@deletePost');
 Route::get('/forum/topic/{topic}/delete', 'ForumController@deleteTopic');
+Route::get('/forum/topic/{topic}/move/{category}', 'ForumController@moveTopic');
 
 Route::post('/github/{token}', function ($token){
     if($token == $_ENV["GITHUB_TRIDENT_KEY"]){

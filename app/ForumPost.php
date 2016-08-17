@@ -18,6 +18,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
+ * @property string $post_type
+ * @property integer $topic_moved_from
+ * @property integer $topic_moved_to
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost wherePostType($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereTopicMovedFrom($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereTopicMovedTo($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost existsTopic()
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\ForumPost topicCategory($category)

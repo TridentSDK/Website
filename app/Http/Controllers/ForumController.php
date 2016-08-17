@@ -243,4 +243,41 @@ class ForumController extends Controller {
         return redirect("/forum")->with("topic-deleted", true);
     }
 
+    public function moveTopic($topic, $category){
+        if(!is_numeric($topic)){
+            return redirect("/forum");
+        }
+
+        $topic = \TridentSDK\ForumTopic::find($topic);
+
+        if($topic == null){
+            return redirect("/forum");
+        }
+
+        $category = \TridentSDK\ForumCategory::find($category);
+
+        if($category == null){
+            return redirect("/forum/topic/".$topic->id)->with("category-not-exist", true);
+        }
+
+        if(!\Auth::check() || !\Auth::getUser()->rank()->isModerator()){
+            return redirect($topic->url());
+        }
+
+        $movePost = new ForumPost();
+        $movePost->post_type = "TOPIC_MOVED";
+        $movePost->topic_moved_from = $topic->category;
+        $movePost->topic_moved_to = $category->id;
+        $movePost->topic = $topic->id;
+        $movePost->text = "";
+        $movePost->deleted = 0;
+        $movePost->userid = 0;
+        $movePost->save();
+
+        $topic->category = $category->id;
+        $topic->save();
+
+        return redirect("/forum/topic/".$topic->id)->with("topic-moved", true);
+    }
+
 }
