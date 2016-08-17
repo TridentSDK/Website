@@ -4,7 +4,7 @@
             Copyright &copy; <?=date("Y"); ?> TridentSDK
         </div>
         <div class="pull-right">
-            Made by <a href="/u/1/">Vilsol</a>
+            Made by <a href="/user/1/">Vilsol</a>
         </div>
     </div>
 </div>
