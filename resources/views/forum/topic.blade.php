@@ -40,15 +40,15 @@
                     @php($lastPostDate = $post->created_at)
                 @else
                     @if($lastPostDate->diffInYears($post->created_at) >= 1)
-                        <div class="alert alert-primary alert-no-margin" role="alert">
+                        <div class="alert alert-info alert-no-margin" role="alert">
                             <span href="#" class="alert-link">{{ $lastPostDate->diffInYears($post->created_at) }} year{{ $lastPostDate->diffInYears($post->created_at) > 1 ? "s" : "" }} later</span>
                         </div>
                     @elseif($lastPostDate->diffInMonths($post->created_at) >= 1)
-                        <div class="alert alert-primary alert-no-margin" role="alert">
+                        <div class="alert alert-info alert-no-margin" role="alert">
                             <span href="#" class="alert-link">{{ $lastPostDate->diffInMonths($post->created_at) }} month{{ $lastPostDate->diffInMonths($post->created_at) > 1 ? "s" : "" }} later</span>
                         </div>
                     @elseif($lastPostDate->diffInWeeks($post->created_at) >= 1)
-                        <div class="alert alert-primary alert-no-margin" role="alert">
+                        <div class="alert alert-info alert-no-margin" role="alert">
                             <span href="#" class="alert-link">{{ $lastPostDate->diffInWeeks($post->created_at) }} week{{ $lastPostDate->diffInWeeks($post->created_at) > 1 ? "s" : "" }} later</span>
                         </div>
                     @endif
@@ -113,7 +113,7 @@
                 </div>
                 @php($first = false)
             @elseif($post->post_type == "TOPIC_MOVED")
-                <div class="alert alert-primary alert-no-margin" role="alert">
+                <div class="alert alert-info alert-no-margin" role="alert">
                     <span href="#" class="alert-link">Topic moved from "{{ \TridentSDK\ForumCategory::find($post->topic_moved_from)->name }}" to "{{ \TridentSDK\ForumCategory::find($post->topic_moved_to)->name }}"</span>
                 </div>
             @endif
