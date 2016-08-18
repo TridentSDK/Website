@@ -11,3 +11,5 @@ readme.md
 .idea/
 storage/
 bower_components
+npm-debug.log
+/public/css/*

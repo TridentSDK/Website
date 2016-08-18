@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset("/bower_components/summernote/dist/summernote.css") }}">
 
-    <link href="{{ asset("/assets/css/newstyle.css") }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset("/css/app.css") }}" rel="stylesheet" type="text/css">
 
     <style type="text/css">
         .bv-form .help-block{margin-bottom:0}.bv-form .tooltip-inner{text-align:left}.nav-tabs li.bv-tab-success>a{color:#3c763d}.nav-tabs li.bv-tab-error>a{color:#a94442}
