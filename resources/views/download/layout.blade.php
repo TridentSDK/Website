@@ -1,5 +1,7 @@
 @extends("sections.wrap-layout")
 
+@section("title", "Downloads")
+
 @section('content')
     <div class="row">
         <div class="col-sm-4">

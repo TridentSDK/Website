@@ -1,5 +1,7 @@
 @extends("sections.wrap-layout")
 
+@section("title", $category->name)
+
 @section('content')
     @include("forum.breadcrumbs")
 

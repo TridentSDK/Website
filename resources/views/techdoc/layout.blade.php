@@ -1,5 +1,7 @@
 @extends("sections.wrap-layout")
 
+@section("title", "Tech-Doc")
+
 @section('content')
     <div class="panel panel-info">
         <div class="panel-heading">

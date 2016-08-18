@@ -1,5 +1,7 @@
 @extends("sections.wrap-layout")
 
+@section("title", "Forum")
+
 @section('content')
     @include("forum.breadcrumbs", ["breadcrumbs" => array()])
 

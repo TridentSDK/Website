@@ -1,5 +1,5 @@
 <head>
-    <title>TridentSDK</title>
+    <title>@yield("title", "Home") | TridentSDK</title>
 
     <meta name="keywords" content="minecraft,server,software,trident,tridentsdk">
     <meta name="description" content="A successor to the Minecraft server Software!">

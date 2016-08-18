@@ -1,7 +1,10 @@
 @extends("sections.wrap-layout")
 
+@section("title", $user == null ? "User not found" : $user->username)
+
 @section('content')
     @if($user != null)
+
         <div class="clearfix headbox">
             <h1 class="pull-left">{{ $user->username }}</h1>
         </div>
