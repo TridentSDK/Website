@@ -121,3 +121,7 @@ Route::post('/github/{token}', function ($token){
         \DB::table("config")->where("key", "=", "tridentSDKCommit")->update(["value" => json_encode($commit)]);
     }
 });
+
+Route::get("/api/1.0/post/likes/", "ApiControllerV1_0@postLikeCount");
+Route::get("/api/1.0/post/like/", "ApiControllerV1_0@likePost");
+Route::get("/api/1.0/post/dislike/", "ApiControllerV1_0@dislikePost");

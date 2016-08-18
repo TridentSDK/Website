@@ -39,4 +39,8 @@
     $(function () {
         $.material.init();
     });
+
+    @if(Auth::check())
+        var SECURITY_TOKEN = "{{ Auth::user()->token }}";
+    @endif
 </script>

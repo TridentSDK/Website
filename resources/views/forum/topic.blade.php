@@ -104,8 +104,8 @@
                                         <a href="/forum/edit/{{ $post->id }}/" class="btn btn-xs btn-info btn-raised">EDIT</a>
                                     @endif
 
-                                    <div class="btn btn-xs btn-success btn-raised">
-                                        <span class="badge" style="margin-right: 3px">0</span>
+                                    <div class="btn btn-xs btn-success btn-raised post-like-button{{ Auth::check() ? ($post->likedBy(Auth::user()) ? " liked" : "") : "" }}" data-post="{{ $post->id }}">
+                                        <span class="badge" style="margin-right: 3px">{{ $post->likeCount() }}</span>
                                         <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px; margin-top: -10px; top: 4px;" aria-hidden="true"></span>
                                     </div>
                                 </div>

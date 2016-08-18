@@ -1,24 +1,30 @@
-function like(id, element) {
-    $.ajax("https://tridentsdk.net/api/1.0/post/like?token=" + SECURITY_TOKEN + "&post=" + id)
-        .done(function () {
-            updateCount(id, element, true);
-        });
-}
+$(".post-like-button").on("click", function (event) {
+    var button = $(event.target);
 
-function dislike(id, element) {
-    $.ajax("https://tridentsdk.net/api/1.0/post/dislike?token=" + SECURITY_TOKEN + "&post=" + id)
-        .done(function () {
-            updateCount(id, element, false);
-        });
-}
+    if(button.prop("tagName") == "SPAN"){
+        button = button.parent();
+    }
 
-function updateCount(id, element, like){
-    $.ajax("https://tridentsdk.net/api/1.0/post/likes?post=" + id)
-        .done(function (a) {
-            $(element.parentElement).html('<span class="badge">' + a.response.count + '</span> <span style="color: ' +
-                (like ? "orange" : "green") +
-                '; cursor: pointer" onclick="' +
-                (like ? "dislike" : "like") +
-                '(' + id + ', this)"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></span>');
+    var post = button.data("post");
+
+    if(button.hasClass("liked")){
+        $.ajax("/api/1.0/post/dislike?token=" + SECURITY_TOKEN + "&post=" + post)
+        .done(function () {
+            updateLikeCount(button, post);
+            button.removeClass("liked");
         });
+    }else{
+        $.ajax("/api/1.0/post/like?token=" + SECURITY_TOKEN + "&post=" + post)
+        .done(function () {
+            updateLikeCount(button, post);
+            button.addClass("liked");
+        });
+    }
+});
+
+function updateLikeCount(button, post){
+    $.ajax("/api/1.0/post/likes?post=" + post)
+    .done(function (a) {
+        button.find(".badge").text("" + a.count);
+    });
 }

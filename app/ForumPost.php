@@ -121,6 +121,14 @@ class ForumPost extends Model {
         return false;
     }
 
+    function likedBy(User $user){
+        return ForumPostLike::whereUserid($user->id)->wherePostid($this->id)->exists();
+    }
+
+    function likeCount(){
+        return ForumPostLike::wherePostid($this->id)->count();
+    }
+
     /**
      * @param int $count
      * @return array|\Illuminate\Database\Eloquent\Collection|static[]

@@ -284,3 +284,19 @@ img.build-status {
 .alert-no-margin {
 	margin-bottom: 0;
 }
+
+.post-like-button.liked:hover {
+	background-color: #f55549 !important;
+}
+
+.post-like-button.liked:hover .badge {
+	color: #f55549 !important;
+}
+
+.post-like-button.liked .glyphicon-thumbs-up:before {
+	content: "\e013";
+}
+
+.post-like-button.liked:hover .glyphicon-thumbs-up:before {
+	content: "\e126";
+}
