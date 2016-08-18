@@ -38,7 +38,7 @@ class ApiControllerV1_0 extends Controller {
         $like->postid = $request->get("post");
         $like->save();
 
-        return response()->json(["success" => true]);
+        return response()->json(["success" => true, "count" => $post->likeCount()]);
     }
 
     public function dislikePost(Request $request){
@@ -60,21 +60,7 @@ class ApiControllerV1_0 extends Controller {
 
         $like->delete();
 
-        return response()->json(["success" => true]);
-    }
-
-    public function postLikeCount(Request $request){
-        if(!$request->has("post")){
-            return response()->json(ApiError::POST_ID_NOT_PROVIDED, 400);
-        }
-
-        $post = ForumPost::find($request->get("post"));
-
-        if($post == null){
-            return response()->json(ApiError::POST_NOT_FOUND, 400);
-        }
-
-        return response()->json(["success" => "true", "count" => $post->likeCount()]);
+        return response()->json(["success" => true, "count" => $post->likeCount()]);
     }
 
 }
