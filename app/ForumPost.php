@@ -132,6 +132,7 @@ class ForumPost extends Model {
             ON `forum_post`.`created_at` = `grouped`.`latest`
             WHERE EXISTS (select 1 from `forum_topic` where `id` = `forum_post`.`topic` and `deleted_at` is null)
             AND `forum_post`.`deleted_at` is null
+            AND `forum_post`.`post_type` = 'NORMAL'
             ORDER BY id DESC
             LIMIT ".$count."#")->get(); // That hash is necessary, Laravel adds stuff after, there should be a toggle for this
     }
