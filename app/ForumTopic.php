@@ -73,7 +73,7 @@ class ForumTopic extends Model {
             return null;
         }
 
-        return ForumPost::whereTopic($this->id)->orderBy("created_at", "DESC")->first();
+        return ForumPost::whereTopic($this->id)->wherePostType("NORMAL")->orderBy("created_at", "DESC")->first();
     }
 
     /**
