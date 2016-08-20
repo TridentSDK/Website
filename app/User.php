@@ -113,4 +113,23 @@ class User extends Authenticatable {
         return time() - $this->last_online < 300;
     }
 
+    public function sendNotification($message){
+        $notification = new Notification();
+        $notification->user_id = $this->id;
+        $notification->text = $message;
+        $notification->save();
+    }
+
+    public function getLatestNotifications($count = 5){
+        return Notification::whereUserId($this->id)->limit($count)->get();
+    }
+
+    public function getUnreadNotificationCount(){
+        return Notification::whereUserId($this->id)->whereRead(false)->count();
+    }
+
+    public function readLatestNotifications($count = 5){
+        Notification::whereUserId($this->id)->limit($count)->update(["read" => true]);
+    }
+
 }

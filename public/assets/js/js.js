@@ -21,3 +21,12 @@ $(".post-like-button").on("click", function (event) {
         });
     }
 });
+
+$(".search-dropdown-button").on("click", function () {
+    if($(".search-dropdown-button").find(".badge").length){
+        $.ajax("/api/1.0/notifications/read/dropdown?token=" + SECURITY_TOKEN)
+        .done(function () {
+            $(".search-dropdown-button").find(".badge").remove();
+        });
+    }
+});

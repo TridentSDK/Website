@@ -124,3 +124,4 @@ Route::post('/github/{token}', function ($token){
 
 Route::get("/api/1.0/post/like/", "ApiControllerV1_0@likePost");
 Route::get("/api/1.0/post/dislike/", "ApiControllerV1_0@dislikePost");
+Route::get("/api/1.0/notifications/read/dropdown/", "ApiControllerV1_0@readDropdown");

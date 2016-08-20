@@ -24,11 +24,17 @@
                 @include("sections.login-box")
             </ul>
 
-            <form class="navbar-form navbar-right" role="search" method="get" action="/search/">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="search">
-                </div>
-            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="padding:12px; width: 275px;">
+                        <form class="form-inline" role="search" method="get" action="/search/">
+                            <input type="text" class="form-control pull-left" placeholder="Search" name="search" style="margin-bottom: 0;">
+                            <button type="submit" class="btn btn-info btn-raised pull-right" style="margin: 0;"><i class="glyphicon glyphicon-search"></i></button>
+                        </form>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

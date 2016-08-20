@@ -13,6 +13,7 @@ class ApiControllerV1_0 extends Controller {
         $this->middleware("token", ['only' => [
             'likePost',
             'dislikePost',
+            'readDropdown'
         ]]);
     }
 
@@ -61,6 +62,11 @@ class ApiControllerV1_0 extends Controller {
         $like->delete();
 
         return response()->json(["success" => true, "count" => $post->likeCount()]);
+    }
+
+    public function readDropdown(){
+        \Auth::user()->readLatestNotifications();
+        return response()->json(["success" => true]);
     }
 
 }
