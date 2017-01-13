@@ -125,3 +125,19 @@ Route::post('/github/{token}', function ($token){
 Route::get("/api/1.0/post/like/", "ApiControllerV1_0@likePost");
 Route::get("/api/1.0/post/dislike/", "ApiControllerV1_0@dislikePost");
 Route::get("/api/1.0/notifications/read/dropdown/", "ApiControllerV1_0@readDropdown");
+
+Route::get("/article/{id}", function ($id){
+	$article = \TridentSDK\NewsArticle::find($id);
+
+	if(!isset($article)){
+		return redirect("/404/");
+	}
+
+	return view('home.news.layout', [
+		"article" => $article,
+	]);
+});
+
+Route::get("/404/", function(){
+	return view('errors.404');
+});

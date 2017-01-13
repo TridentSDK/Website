@@ -6,7 +6,7 @@
     <meta itemprop="mainEntityOfPage" content="{{ env("APP_URL") }}" />
 
     <div class="panel-heading">
-        <h3 class="panel-title pull-left" itemprop="name"><a href="/n/{{ $article->id }}">{{ $article->title }}</a></h3>
+        <h3 class="panel-title pull-left" itemprop="name"><a href="/article/{{ $article->id }}">{{ $article->title }}</a></h3>
         <time datetime="{{ $article->created_at }}" itemprop="datePublished" class="pull-right" title="{{ $article->created_at }}">{{ $article->created_at->diffForHumans() }}</time>
         <div class="clearfix"></div>
     </div>
