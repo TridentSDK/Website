@@ -3,7 +3,6 @@
 namespace TridentSDK\Http\Controllers;
 
 use Captcha\Captcha;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Hashing\BcryptHasher;
 use Request;
 use TridentSDK\Http\Requests\LoginUserRequest;
@@ -11,8 +10,6 @@ use TridentSDK\Http\Requests\RegisterUserRequest;
 use TridentSDK\User;
 
 class AuthController extends Controller {
-
-    use AuthenticatesAndRegistersUsers;
 
     public function register(RegisterUserRequest $request){
         $captcha = new Captcha();
