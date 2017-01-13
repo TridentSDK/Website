@@ -16,8 +16,8 @@ class AuthController extends Controller {
 
     public function register(RegisterUserRequest $request){
         $captcha = new Captcha();
-        $captcha->setPublicKey($_ENV["RECAPTCHA_PUBLIC"]);
-        $captcha->setPrivateKey($_ENV["RECAPTCHA_SECRET"]);
+        $captcha->setPublicKey(env("RECAPTCHA_PUBLIC"));
+        $captcha->setPrivateKey(env("RECAPTCHA_SECRET"));
         $response = $captcha->check(Request::get("g-recaptcha-response"));
 
         if($response->isValid()){

@@ -29,8 +29,6 @@
 
 <script src="{{ asset("/bower_components/bootstrap-validator/dist/validator.min.js") }}" type="text/javascript"></script>
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
-
 <script src="{{ asset("/assets/js/js.js") }}" type="text/javascript"></script>
 
 <script src="{{ asset("/bower_components/summernote/dist/summernote.min.js") }}"></script>

@@ -18,8 +18,8 @@ class AppServiceProvider extends ServiceProvider {
         ini_set("xdebug.var_display_max_depth", 5);
 
         $captcha = new Captcha();
-        $captcha->setPublicKey($_ENV["RECAPTCHA_PUBLIC"]);
-        $captcha->setPrivateKey($_ENV["RECAPTCHA_SECRET"]);
+        $captcha->setPublicKey(env("RECAPTCHA_PUBLIC"));
+        $captcha->setPrivateKey(env("RECAPTCHA_SECRET"));
 
         if(!isset($_SERVER['REMOTE_ADDR'])){
             $captcha->setRemoteIp('192.168.1.1');
