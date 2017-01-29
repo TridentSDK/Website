@@ -94,6 +94,7 @@ class AuthController extends Controller {
 
 		if(!empty(Request::get("new-password"))){
 			$user->password = bcrypt(Request::get("new-password"));
+			$user->rehashed = true;
 		}
 
 		$user->save();
