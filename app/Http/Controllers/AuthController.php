@@ -2,11 +2,13 @@
 
 namespace TridentSDK\Http\Controllers;
 
+use Auth;
 use Captcha\Captcha;
 use Illuminate\Hashing\BcryptHasher;
 use Request;
 use TridentSDK\Http\Requests\LoginUserRequest;
 use TridentSDK\Http\Requests\RegisterUserRequest;
+use TridentSDK\Http\Requests\UserSettingsRequest;
 use TridentSDK\User;
 
 class AuthController extends Controller {
@@ -66,6 +68,38 @@ class AuthController extends Controller {
             return redirect()->back()->withErrors("Username not found.", "login");
         }
     }
+
+	public function settings(UserSettingsRequest $request, $id){
+		$user = User::find($id);
+
+		if(!$user){
+			return redirect("/404");
+		}
+
+		if(!Auth::check()){
+			return redirect("/404");
+		}
+
+		if(!Auth::getUser()->canEdit($user)){
+			return redirect("/404");
+		}
+
+		if(!Auth::validate(["username" => Auth::user()->username, "password" => Request::get("current-password")])){
+			return redirect()->back()->withErrors("Invalid Password.", "settings");
+		}
+
+		if(!empty(Request::get("new-email"))){
+			$user->email = Request::get("new-email");
+		}
+
+		if(!empty(Request::get("new-password"))){
+			$user->password = bcrypt(Request::get("new-password"));
+		}
+
+		$user->save();
+
+		return redirect()->back()->with("accepted", true);
+	}
 
     public function logout(){
         \Auth::logout();

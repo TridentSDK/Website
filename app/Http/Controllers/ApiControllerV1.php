@@ -7,7 +7,7 @@ use TridentSDK\Enums\ApiError;
 use TridentSDK\ForumPost;
 use TridentSDK\ForumPostLike;
 
-class ApiControllerV1_0 extends Controller {
+class ApiControllerV1 extends Controller {
 
     public function __construct(){
         $this->middleware("token", ['only' => [

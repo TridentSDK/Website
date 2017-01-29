@@ -8,7 +8,7 @@ class UpdateOnline {
 
     public function handle($request, Closure $next){
         if(\Auth::check()){
-            \Auth::user()->updateLastOnline();
+            //\Auth::user()->updateLastOnline();
         }
 
         return $next($request);

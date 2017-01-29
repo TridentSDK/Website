@@ -2,6 +2,7 @@
 
 namespace TridentSDK\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -36,9 +37,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        $this->mapWebRoutes($router);
-
-        //
+	    $this->mapApiRoutes($router);
+	    $this->mapWebRoutes($router);
     }
 
     /**
@@ -46,15 +46,27 @@ class RouteServiceProvider extends ServiceProvider
      *
      * These routes all receive session state, CSRF protection, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    protected function mapWebRoutes(Router $router)
+    protected function mapWebRoutes()
     {
-        $router->group([
-            'namespace' => $this->namespace, 'middleware' => 'web',
-        ], function ($router) {
-            require app_path('Http/routes.php');
-        });
+	    Route::middleware('web')
+		    ->namespace($this->namespace)
+		    ->group(base_path('routes/web.php'));
     }
+
+	/**
+	 * Define the "api" routes for the application.
+	 *
+	 * These routes are typically stateless.
+	 *
+	 * @return void
+	 */
+	protected function mapApiRoutes()
+	{
+		Route::prefix('api/v1')
+			->middleware('api')
+			->namespace($this->namespace)
+			->group(base_path('routes/api-v1.php'));
+	}
 }

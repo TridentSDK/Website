@@ -132,4 +132,21 @@ class User extends Authenticatable {
         Notification::whereUserId($this->id)->limit($count)->update(["read" => true]);
     }
 
+	/**
+	 * @param $user User
+	 *
+	 * @return bool
+	 */
+    public function canEdit($user){
+    	if($user->id == $this->id){
+    		return true;
+	    }
+
+	    if($user->rank()->isAdmin()){
+    		return true;
+	    }
+
+	    return false;
+    }
+
 }
