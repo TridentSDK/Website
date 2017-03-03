@@ -11,7 +11,8 @@
         "longman/telegram-bot": "^0.34.0",
         "recaptcha/php5": "v2.0.0",
         "laravelcollective/html": "^5.2.0",
-        "greggilbert/recaptcha": "^2.1"
+        "greggilbert/recaptcha": "^2.1",
+        "aws/aws-sdk-php": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
