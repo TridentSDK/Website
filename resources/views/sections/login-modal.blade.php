@@ -12,10 +12,10 @@
 
             <div class="modal-body">
 
-                @if($errors->getBag("default")->any())
+                @if($errors->getBag("login")->any())
 
                     <div class="alert alert-danger" style="margin-bottom: 0;" role="alert">
-                        @foreach($errors->getBag("default")->getMessages() as $field => $error)
+                        @foreach($errors->getBag("login")->getMessages() as $field => $error)
                             {{ $error[0] }}
                             <br/>
                         @endforeach
@@ -50,8 +50,9 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#resetModal">Forgot Password</button>
                 <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#registerModal">Register</button>
-                <button type="submit" class="btn btn-primary right" style="margin-bottom: 0;" value="Login" name="login">Login</button>
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 0;" value="Login" name="login">Login</button>
             </div>
 
             {!! Form::close() !!}
@@ -114,12 +115,58 @@
 
                     <div class="form-group">
                         {!! Form::label("captcha", "Captcha *") !!}
-                        {!! $captcha->html() !!}
+                        {!! Recaptcha::render() !!}
                     </div>
                 </div>
                 <div class="modal-footer">
                     {!! Form::submit("Register", ["class" => "btn btn-primary right"]) !!}
                 </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelReset" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabelReset">Reset Password</h4>
+            </div>
+            {!! Form::open(["id" => "resetForm", "url" => "/password/email"]) !!}
+
+            <div class="modal-body">
+
+                @if($errors->getBag("email")->any())
+
+                    <div class="alert alert-danger" style="margin-bottom: 0;" role="alert">
+                        @foreach($errors->getBag("email")->getMessages() as $field => $error)
+                            {{ $error[0] }}
+                            <br/>
+                        @endforeach
+                    </div>
+
+                    <script>$(document).ready(function(){ $('#resetModal').modal('show');});</script>
+
+                @endif
+
+                @if(session("reset-sent"))
+                    <div class="alert alert-success" role="alert">{{ session("reset-sent") }}</div>
+                    <script>$(document).ready(function(){ $('#resetModal').modal('show');});</script>
+                @endif
+
+                <div class="form-group">
+                    {!! Form::label("email", "Email *") !!}
+                    {!! Form::email("email", null, ["class" => "form-control", "required"]) !!}
+                    <div class="help-block with-errors"></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                {!! Form::submit("Send password reset", ["class" => "btn btn-primary right"]) !!}
+            </div>
+
             {!! Form::close() !!}
         </div>
     </div>

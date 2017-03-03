@@ -24,8 +24,14 @@ class UserSettingsRequest extends Request {
      */
     public function rules(){
         return [
-            "new-email"         => "email",
+            "new-email"         => "email|unique:user,email",
             "current-password"  => "required"
         ];
     }
+
+	public function messages(){
+		return [
+			'new-email.unique' => 'This email has already been taken',
+		];
+	}
 }

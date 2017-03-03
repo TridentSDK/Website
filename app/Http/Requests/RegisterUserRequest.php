@@ -24,9 +24,10 @@ class RegisterUserRequest extends Request {
      */
     public function rules(){
         return [
-            "username" => "required|between:6,30",
-            "email"    => "required|email",
-            "password" => "required|confirmed|same:password_confirmation"
+            "username" => "required|between:6,30|unique:user",
+            "email"    => "required|email|unique:user",
+            "password" => "required|confirmed|same:password_confirmation",
+	        'g-recaptcha-response' => 'required|recaptcha'
         ];
     }
 }

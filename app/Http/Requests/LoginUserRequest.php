@@ -22,7 +22,7 @@ class LoginUserRequest extends Request {
      */
     public function rules(){
         return [
-            "username" => "required|between:6,30",
+            "username" => "required|between:6,30|exists:user",
             "password" => "required"
         ];
     }

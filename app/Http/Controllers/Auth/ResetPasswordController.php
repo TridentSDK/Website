@@ -2,10 +2,11 @@
 
 namespace TridentSDK\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\DB;
 use TridentSDK\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-class PasswordController extends Controller {
+class ResetPasswordController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -17,8 +18,9 @@ class PasswordController extends Controller {
 	| explore this trait and override any methods you wish to tweak.
 	|
 	*/
-
 	use ResetsPasswords;
+
+	protected $redirectTo = '/';
 
 	public function __construct(){
 		$this->middleware('guest');

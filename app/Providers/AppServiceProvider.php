@@ -17,16 +17,6 @@ class AppServiceProvider extends ServiceProvider {
     public function boot(){
         ini_set("xdebug.var_display_max_depth", 5);
 
-        $captcha = new Captcha();
-        $captcha->setPublicKey(env("RECAPTCHA_PUBLIC"));
-        $captcha->setPrivateKey(env("RECAPTCHA_SECRET"));
-
-        if(!isset($_SERVER['REMOTE_ADDR'])){
-            $captcha->setRemoteIp('192.168.1.1');
-        }
-
-        view()->share("captcha", $captcha);
-
         view()->share('navigation_menu_items', array(
             "Forum"    => "/forum",
             "Members"  => "/members",
@@ -61,6 +51,8 @@ class AppServiceProvider extends ServiceProvider {
      * @return void
      */
     public function register(){
-        //
+	    if ($this->app->environment() !== 'production') {
+		    $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+	    }
     }
 }

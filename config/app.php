@@ -148,6 +148,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+	    Illuminate\Notifications\NotificationServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -168,11 +169,10 @@ return [
          */
         Barryvdh\Debugbar\ServiceProvider::class,
 
-        /*
-         * IDE Helper
-         */
-        //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-
+	    /*
+	     * Recaptcha Validator
+	     */
+	    Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
     ],
 
     /*
@@ -221,6 +221,8 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+	    'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+	    'Notification' => Illuminate\Support\Facades\Notification::class,
 
     ],
 

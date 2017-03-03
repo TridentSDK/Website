@@ -14,58 +14,37 @@ use TridentSDK\User;
 class AuthController extends Controller {
 
     public function register(RegisterUserRequest $request){
-        $captcha = new Captcha();
-        $captcha->setPublicKey(env("RECAPTCHA_PUBLIC"));
-        $captcha->setPrivateKey(env("RECAPTCHA_SECRET"));
-        $response = $captcha->check(Request::get("g-recaptcha-response"));
+        $validation_code = str_random(16);
 
-        if($response->isValid()){
-            if(User::where("username", "=", Request::get("username"))->count() == 0){
-                if(User::where("email", "=", Request::get("email"))->count() == 0){
-                    $validation_code = self::generateRandom(16);
+        $user = User::create([
+            'username' => Request::get("username"),
+            'email' => Request::get("email"),
+            'password' => bcrypt(Request::get("password")),
+            'validation_code' => $validation_code,
+            'token' => str_random(32),
+            'rehashed' => true
+        ]);
 
-                    $user = User::create([
-                        'username' => Request::get("username"),
-                        'email' => Request::get("email"),
-                        'password' => bcrypt(Request::get("password")),
-                        'validation_code' => $validation_code,
-                        'token' => self::generateRandom(32),
-                        'rehashed' => true
-                    ]);
+        self::sendValidationEmail(Request::get("email"), Request::get("username"), $user->id, $validation_code);
 
-                    self::sendValidationEmail(Request::get("email"), Request::get("username"), $user->id, $validation_code);
-
-                    return redirect()->back()->with("registered", true);
-                }else{
-                    return redirect()->back()->withErrors("This email is already taken.", "register");
-                }
-            }else{
-                return redirect()->back()->withErrors("This username is already taken.", "register");
-            }
-        }else{
-            return redirect()->back()->withErrors("Invalid Captcha.", "register");
-        }
+        return redirect()->back()->with("registered", true);
     }
 
     public function login(LoginUserRequest $request){
         $user = User::where("username", "=", Request::get("username"))->first();
-        if($user){
-            if(!$user->rehashed){
-                $oldHash = hash("sha256", crypt(md5(Request::get("password")), $user->salt));
-                if($user->password == $oldHash){
-                    $user->password = (new BcryptHasher())->make(Request::get("password"));
-                    $user->rehashed = true;
-                    $user->save();
-                }
+        if(!$user->rehashed){
+            $oldHash = hash("sha256", crypt(md5(Request::get("password")), $user->salt));
+            if($user->password == $oldHash){
+                $user->password = (new BcryptHasher())->make(Request::get("password"));
+                $user->rehashed = true;
+                $user->save();
             }
+        }
 
-            if(\Auth::attempt(["username" => Request::get("username"), "password" => Request::get("password")], Request::has("remember"))){
-                return redirect()->back();
-            }else{
-                return redirect()->withErrors("Invalid password.", "login");
-            }
+        if(\Auth::attempt(["username" => Request::get("username"), "password" => Request::get("password")], Request::has("remember"))){
+            return redirect()->back();
         }else{
-            return redirect()->back()->withErrors("Username not found.", "login");
+            return redirect()->withErrors("Invalid password.", "login");
         }
     }
 
@@ -105,15 +84,6 @@ class AuthController extends Controller {
     public function logout(){
         \Auth::logout();
         return redirect()->back();
-    }
-
-	public function generateRandom($length){
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $salt = '';
-        for($i = 0; $i < $length; $i++){
-            $salt .= $characters[mt_rand(0, strlen($characters) - 1)];
-        }
-        return $salt;
     }
 
 	public function sendValidationEmail($to, $username, $id, $code){
