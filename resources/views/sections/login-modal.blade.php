@@ -12,7 +12,7 @@
 
             <div class="modal-body">
 
-                @if($errors->getBag("login")->any())
+                @if(isset($errors) && $errors->getBag("login")->any())
 
                     <div class="alert alert-danger" style="margin-bottom: 0;" role="alert">
                         @foreach($errors->getBag("login")->getMessages() as $field => $error)
@@ -72,7 +72,7 @@
             {!! Form::open(["id" => "registerForm", "url" => "register"]) !!}
                 <div class="modal-body">
 
-                    @if($errors->getBag("register")->any())
+                    @if(isset($errors) && $errors->getBag("register")->any())
 
                         <div class="alert alert-danger" style="margin-bottom: 0;" role="alert">
                             @foreach($errors->getBag("register")->getMessages() as $field => $error)
@@ -138,7 +138,7 @@
 
             <div class="modal-body">
 
-                @if($errors->getBag("email")->any())
+                @if(isset($errors) && $errors->getBag("email")->any())
 
                     <div class="alert alert-danger" style="margin-bottom: 0;" role="alert">
                         @foreach($errors->getBag("email")->getMessages() as $field => $error)

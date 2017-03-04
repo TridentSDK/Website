@@ -39,6 +39,7 @@ class RouteServiceProvider extends ServiceProvider
     {
 	    $this->mapApiRoutes($router);
 	    $this->mapWebRoutes($router);
+	    $this->mapRepositoryRoutes($router);
     }
 
     /**
@@ -68,5 +69,18 @@ class RouteServiceProvider extends ServiceProvider
 			->middleware('api')
 			->namespace($this->namespace)
 			->group(base_path('routes/api-v1.php'));
+	}
+
+	/**
+	 * Define the "repository" routes for the application.
+	 *
+	 * @return void
+	 */
+	protected function mapRepositoryRoutes()
+	{
+		Route::prefix('repository')
+			->middleware('repository')
+			->namespace($this->namespace)
+			->group(base_path('routes/repository.php'));
 	}
 }

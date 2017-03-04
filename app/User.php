@@ -59,6 +59,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereRehashed($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\User whereDeveloper($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  */
 class User extends Authenticatable {
 

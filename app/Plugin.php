@@ -29,6 +29,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
+ * @property int $space
+ * @property string $artifact
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereSpace($value)
+ * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereArtifact($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\TridentSDK\Plugin whereUpdatedAt($value)
@@ -57,5 +61,31 @@ class Plugin extends Model {
     use SoftDeletes;
 
     protected $table = "plugin";
+
+	/**
+	 * @return Plugin|null
+	 */
+	public static function findBySpace($space, $plugin){
+		return Plugin::whereExists(function ($query) use ($space) {
+			$query->select(\DB::raw(1))
+				->from("plugin_space")
+				->whereRaw("plugin.space = plugin_space.id")
+				->where('name', $space);
+		})->whereArtifact($plugin)->first();
+	}
+
+	/**
+	 * @return PluginVersion[]
+	 */
+	public function versions(){
+		return PluginVersion::wherePluginid($this->id)->get();
+	}
+
+	/**
+	 * @return PluginVersion
+	 */
+	public function version($version){
+		return PluginVersion::wherePluginid($this->id)->whereVersion($version)->first();
+	}
 
 }

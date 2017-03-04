@@ -40,4 +40,11 @@ class PluginVersion extends Model {
 
     protected $table = "plugin_version";
 
+	/**
+	 * @return PluginVersionDependency[]
+	 */
+	public function dependencies(){
+		return PluginVersionDependency::wherePluginId($this->pluginid)->whereVersionId($this->id)->get();
+	}
+
 }

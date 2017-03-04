@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.4.*",
-        "barryvdh/laravel-debugbar": "^2.2",
+        "barryvdh/laravel-debugbar": "^2.3.2",
         "longman/telegram-bot": "^0.34.0",
         "recaptcha/php5": "v2.0.0",
         "laravelcollective/html": "^5.2.0",
