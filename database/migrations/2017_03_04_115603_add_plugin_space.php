@@ -22,7 +22,7 @@ class AddPluginSpace extends Migration {
 
 		Schema::table('plugin', function (Blueprint $table) {
 			$table->integer('space')->index();
-			$table->text('artifact', 32)->index();
+			$table->text('artifact', 32);
 		});
 	}
 
