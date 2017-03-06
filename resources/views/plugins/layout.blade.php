@@ -25,7 +25,7 @@
                             <div class="media panel panel-default panel-body">
                                 <div class="media-left">
                                     <a href="#">
-                                        <img class="media-object" src="{{ url("/assets/images/no_plugin_image.svg") }}">
+                                        <img class="media-object plugin-logo" src="{{ url("/assets/images/no_plugin_image.svg") }}">
                                     </a>
                                 </div>
                                 <div class="media-body">

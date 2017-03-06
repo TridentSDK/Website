@@ -1,0 +1,36 @@
+.forum-text-limited {
+  max-width: 350px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  float: left;
+}
+
+.posts .title-linker {
+  display: block;
+  content: "";
+  height: 140px;
+  margin: -140px 0 0;
+}
+
+.forum-post-buttons .btn {
+  margin-bottom: 0;
+}
+
+.post-like-button.liked {
+  .glyphicon-thumbs-up:before {
+    content: "\e013";
+  }
+
+  &:hover {
+    background-color: #f55549 !important;
+
+    .badge {
+      color: #f55549 !important;
+    }
+
+    .glyphicon-thumbs-up:before {
+      content: "\e126";
+    }
+  }
+}
