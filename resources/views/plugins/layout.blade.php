@@ -7,7 +7,7 @@
     <div class="row plugins-page">
         <div class="col-sm-9 plugin-list">
             <div class="row search-bar">
-                <div class="col-xs-12 col-sm-10">
+                <div class="col-xs-12 col-sm-10 search-box">
                     <div class="panel panel-default panel-body">
                         <input type="text" class="form-control" placeholder="Search..."/>
                     </div>
