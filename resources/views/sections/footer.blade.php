@@ -42,3 +42,6 @@
         var SECURITY_TOKEN = "{{ Auth::user()->token }}";
     @endif
 </script>
+
+@section("javascript-extra")
+@show

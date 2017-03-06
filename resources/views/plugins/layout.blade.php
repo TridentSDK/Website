@@ -1,0 +1,106 @@
+@extends("sections.wrap-layout")
+
+@section("title", "Plugins")
+
+@section('content')
+
+    <div class="row plugins-page">
+        <div class="col-sm-9 plugin-list">
+            <div class="row search-bar">
+                <div class="col-xs-12 col-sm-10">
+                    <div class="panel panel-default panel-body">
+                        <input type="text" class="form-control" placeholder="Search..."/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-2 new-plugin">
+                    <a class="btn btn-success btn-raised" href="{{ url("/plugins/new") }}">New Plugin</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    @for($i = 0; $i < 10; $i++)
+                        <div class="col-sm-6 plugin-element">
+                            <div class="media panel panel-default panel-body">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="{{ url("/assets/images/no_plugin_image.svg") }}">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="#">Sample Plugin</a>
+                                        <small class="download-count">
+                                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                                            16,416,963
+                                        </small>
+                                    </h4>
+                                    <small class="plugin-author">by TridentSDK Team</small>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam dolor, sagittis vel feugiat at nullam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="centered">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Filters</h3>
+                </div>
+                <div class="panel-body plugin-filter">
+                    <div class="btn-group-vertical" role="group">
+                        @php($data = [
+                            "Admin Tools" => "Iron_Pickaxe.png",
+                            "Anti-Griefing" => "Iron_Sword.png",
+                            "Chat Related" => "Paper.png",
+                            "Developer Tools" => "Disc.png",
+                            "Economy" => "Emerald.png",
+                            "Fixes" => "Compass.png",
+                            "Fun" => "Cake.png",
+                            "General" => "Apple.png",
+                            "Informational" => "Sign.png",
+                            "Mechanics" => "Redstone.png",
+                            "Miscellaneous" => "Slimeball.png",
+                            "Role-Playing" => "Book.png",
+                            "Web Administration" => "Painting.png",
+                            "World Manipulation" => "Door.png",
+                            "World Generation" => "Map.png"
+                        ])
+                        @foreach($data as $name => $image)
+                            <button type="button" class="btn btn-default btn-raised">
+                                <img src="{{ url("/assets/images/icons/".$image) }}" />
+                                {{ $name }}
+                            </button>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@stop
