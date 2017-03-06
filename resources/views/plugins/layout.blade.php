@@ -2,10 +2,12 @@
 
 @section("title", "Plugins")
 
+@section("container-type", "container-fluid")
+
 @section('content')
 
     <div class="row plugins-page">
-        <div class="col-sm-9 plugin-list">
+        <div class="col-lg-10 col-md-9 col-sm-8 plugin-list">
             <div class="row search-bar">
                 <div class="col-xs-12 col-sm-10 search-box">
                     <div class="panel panel-default panel-body">
@@ -18,8 +20,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    @for($i = 0; $i < 10; $i++)
-                        <div class="col-sm-6 plugin-element">
+                    @for($i = 0; $i < 18; $i++)
+                        <div class="col-lg-4 col-md-6 col-sm-12 plugin-element">
                             <div class="media panel panel-default panel-body">
                                 <div class="media-left">
                                     <a href="#">
@@ -67,7 +69,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-lg-2 col-md-3 col-sm-4">
             <div class="panel panel-warning">
                 <div class="panel-heading">
                     <h3 class="panel-title">Filters</h3>
