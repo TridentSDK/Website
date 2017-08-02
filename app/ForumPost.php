@@ -83,7 +83,7 @@ class ForumPost extends Model {
         return $query->whereExists(function ($query){
             $query->select(\DB::raw(1))
                 ->from("forum_topic")
-                ->whereRaw("id = `forum_post`.`topic`")
+                ->whereRaw("id = forum_post.topic")
                 ->whereNull("deleted_at");
         });
     }
@@ -92,7 +92,7 @@ class ForumPost extends Model {
         return $query->whereExists(function ($query) use ($category) {
             $query->select(\DB::raw(1))
                 ->from("forum_topic")
-                ->whereRaw("`id` = `forum_post`.`topic`")
+                ->whereRaw("id = forum_post.topic")
                 ->whereNull("deleted_at")
                 ->where("category", "=", $category);
         })->whereNull("deleted_at");
@@ -134,15 +134,15 @@ class ForumPost extends Model {
      * @return array|\Illuminate\Database\Eloquent\Collection|static[]
      */
     static function latestPosts($count = 5){
-        return ForumPost::selectRaw("`forum_post`.* 
-            FROM `forum_post` 
-            INNER JOIN (SELECT *, max(`created_at`) AS `latest` FROM `forum_post` GROUP BY `topic` ORDER BY `created_at` DESC) `grouped`
-            ON `forum_post`.`created_at` = `grouped`.`latest`
-            WHERE EXISTS (select 1 from `forum_topic` where `id` = `forum_post`.`topic` and `deleted_at` is null)
-            AND `forum_post`.`deleted_at` is null
-            AND `forum_post`.`post_type` = 'NORMAL'
+        return ForumPost::selectRaw("forum_post.* 
+            FROM forum_post 
+            INNER JOIN (SELECT *, max(created_at) AS latest FROM forum_post GROUP BY topic, id ORDER BY created_at DESC) grouped
+            ON forum_post.created_at = grouped.latest
+            WHERE EXISTS (select 1 from forum_topic where id = forum_post.topic and deleted_at is null)
+            AND forum_post.deleted_at is null
+            AND forum_post.post_type = 'NORMAL'
             ORDER BY id DESC
-            LIMIT ".$count."#")->get(); // That hash is necessary, Laravel adds stuff after, there should be a toggle for this
+            LIMIT ".$count."--")->get(); // That dash dash is necessary, Laravel adds stuff after, there should be a toggle for this
     }
 
 }
