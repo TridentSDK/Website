@@ -7,6 +7,7 @@ use TridentSDK\ForumCategory;
 use TridentSDK\ForumPost;
 use TridentSDK\ForumTopic;
 use TridentSDK\Http\Requests;
+use TridentSDK\Plugin;
 
 class PluginController extends Controller {
 
@@ -30,6 +31,18 @@ class PluginController extends Controller {
                 "World Manipulation" => "Door.png",
                 "World Generation" => "Map.png"
             ]
+        ]);
+    }
+
+    public function plugin($id){
+        $plugin = Plugin::find($id);
+
+        if($plugin == null){
+            return redirect("/404/");
+        }
+
+        return view('plugins.plugin', [
+            "plugin" => $plugin
         ]);
     }
 

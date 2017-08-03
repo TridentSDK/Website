@@ -154,3 +154,4 @@ Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetFor
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get("/plugins/", "PluginController@list");
+Route::get("/plugin/{id}", "PluginController@plugin");

@@ -5,24 +5,24 @@
     "license": "Apache 2.0",
     "type": "project",
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.1",
         "laravel/framework": "5.4.*",
-        "barryvdh/laravel-debugbar": "^2.3.2",
-        "longman/telegram-bot": "^0.34.0",
+        "barryvdh/laravel-debugbar": "^2.4.3",
+        "longman/telegram-bot": "^0.46.0",
         "recaptcha/php5": "v2.0.0",
-        "laravelcollective/html": "^5.2.0",
-        "greggilbert/recaptcha": "^2.1",
-        "aws/aws-sdk-php": "~3.0"
+        "laravelcollective/html": "^5.4.8",
+        "greggilbert/recaptcha": "^2.2.0",
+        "aws/aws-sdk-php": "^3.32.3"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
+        "fzaninotto/faker": "^1.6.0",
+        "mockery/mockery": "0.9.9",
         "phpunit/phpunit": "~4.0",
-        "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*",
+        "symfony/css-selector": "^3.3.6",
+        "symfony/dom-crawler": "^3.3.6",
         "way/generators": "3.0.3",
-        "barryvdh/laravel-ide-helper": "^2.3",
-        "doctrine/dbal": "^2.5"
+        "barryvdh/laravel-ide-helper": "^2.3.2",
+        "doctrine/dbal": "^2.5.13"
     },
     "autoload": {
         "classmap": [

@@ -7,7 +7,7 @@
         </div>
         <div class="media-body">
             <h4 class="media-heading">
-                <a href="#">{{ $plugin->name }}</a>
+                <a href="/plugin/{{ $plugin->id }}">{{ $plugin->name }}</a>
                 <small class="download-count">
                     <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
                     {{ $plugin->downloads }}
