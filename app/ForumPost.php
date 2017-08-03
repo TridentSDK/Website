@@ -134,6 +134,10 @@ class ForumPost extends Model {
      * @return array|\Illuminate\Database\Eloquent\Collection|static[]
      */
     static function latestPosts($count = 5){
+        if(!is_int($count)){
+            throw new \InvalidArgumentException("count argument was not an integer");
+        }
+
         return ForumPost::selectRaw("forum_post.* 
             FROM forum_post 
             INNER JOIN (SELECT *, max(created_at) AS latest FROM forum_post GROUP BY topic, id ORDER BY created_at DESC) grouped
