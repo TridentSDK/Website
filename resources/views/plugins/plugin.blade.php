@@ -46,7 +46,7 @@
                             &nbsp;&nbsp;&lt;<span style="color: #F92672">groupId</span>&gt;trd.{{ $plugin->getSpace()->name }}&lt;<span style="color: #F92672">/groupId</span>&gt;<br>
                             &nbsp;&nbsp;&lt;<span style="color: #F92672">artifactId</span>&gt;{{ $plugin->artifact }}&lt;<span style="color: #F92672">/artifactId</span>&gt;<br>
                             &nbsp;&nbsp;&lt;<span style="color: #F92672">version</span>&gt;{{ $plugin->latestversion }}&lt;<span style="color: #F92672">/version</span>&gt;<br>
-                            &lt;<span style="color: #F92672">/dependency</span>&gt;
+                            &lt;/<span style="color: #F92672">dependency</span>&gt;
                         </div>
                         <div role="tabpanel" class="tab-pane preformatted" id="gradle">
                             provided <span style="color: #E6DB74">"trd.{{ $plugin->getSpace()->name }}:{{ $plugin->artifact }}:{{ $plugin->latestversion }}"</span>
