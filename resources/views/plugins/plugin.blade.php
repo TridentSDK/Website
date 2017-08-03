@@ -38,18 +38,22 @@
                         <li role="presentation"><a href="#module" aria-controls="profile" role="tab" data-toggle="tab">Module</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane preformatted active" id="owner">/trd i {{ $plugin->getSpaceWithArtifact() }}</div>
+                        <div role="tabpanel" class="tab-pane preformatted active" id="owner">
+                            <span style="color: #66D9EF">/trd</span> <span style="color: #FD971F">i</span> <span style="color: #A6E22E">{{ $plugin->getSpaceWithArtifact() }}</span> <span style="color: #F92672">{{ $plugin->latestversion }}</span>
+                        </div>
                         <div role="tabpanel" class="tab-pane preformatted" id="maven">
-                            &lt;dependency&gt;<br>
-                            &nbsp;&nbsp;&lt;groupId&gt;trd.{{ $plugin->getSpace()->name }}&lt;/groupId&gt;<br>
-                            &nbsp;&nbsp;&lt;artifactId&gt;{{ $plugin->artifact }}&lt;/artifactId&gt;<br>
-                            &nbsp;&nbsp;&lt;version&gt;{{ $plugin->latestversion }}&lt;/version&gt;<br>
-                            &lt;/dependency&gt;
+                            &lt;<span style="color: #F92672">dependency</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span style="color: #F92672">groupId</span>&gt;trd.{{ $plugin->getSpace()->name }}&lt;<span style="color: #F92672">/groupId</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span style="color: #F92672">artifactId</span>&gt;{{ $plugin->artifact }}&lt;<span style="color: #F92672">/artifactId</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span style="color: #F92672">version</span>&gt;{{ $plugin->latestversion }}&lt;<span style="color: #F92672">/version</span>&gt;<br>
+                            &lt;<span style="color: #F92672">/dependency</span>&gt;
                         </div>
                         <div role="tabpanel" class="tab-pane preformatted" id="gradle">
-                            provided 'trd.{{ $plugin->getSpace()->name }}:{{ $plugin->artifact }}:{{ $plugin->latestversion }}'
+                            provided <span style="color: #E6DB74">"trd.{{ $plugin->getSpace()->name }}:{{ $plugin->artifact }}:{{ $plugin->latestversion }}"</span>
                         </div>
-                        <div role="tabpanel" class="tab-pane preformatted" id="module">@ModuleDependency('^{{ $plugin->getSpaceWithArtifact() }}:{{ $plugin->latestversion }}')</div>
+                        <div role="tabpanel" class="tab-pane preformatted" id="module">
+                            @<span style="color: #66D9EF">DependsOn</span>(id = <span style="color: #E6DB74">"{{ $plugin->getSpaceWithArtifact() }}"</span>, version = <span style="color: #E6DB74">"{{ $plugin->latestversion }}"</span>)
+                        </div>
                     </div>
                 </div>
             </div>
