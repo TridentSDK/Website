@@ -12,7 +12,8 @@
         "recaptcha/php5": "v2.0.0",
         "laravelcollective/html": "^5.4.8",
         "greggilbert/recaptcha": "^2.2.0",
-        "aws/aws-sdk-php": "^3.32.3"
+        "aws/aws-sdk-php": "^3.32.3",
+        "doctrine/dbal": "^2.5.13"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.6.0",
@@ -21,8 +22,7 @@
         "symfony/css-selector": "^3.3.6",
         "symfony/dom-crawler": "^3.3.6",
         "way/generators": "3.0.3",
-        "barryvdh/laravel-ide-helper": "^2.3.2",
-        "doctrine/dbal": "^2.5.13"
+        "barryvdh/laravel-ide-helper": "^2.3.2"
     },
     "autoload": {
         "classmap": [
