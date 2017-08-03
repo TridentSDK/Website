@@ -74,6 +74,16 @@ class Plugin extends Model {
 		})->whereArtifact($plugin)->first();
 	}
 
+    /**
+     * @param int $perPage
+     * @return Plugin[]
+     */
+	public static function popularPlugins($perPage = 18){
+	    return Plugin::query()
+            ->orderBy("downloads", "desc")
+            ->paginate($perPage);
+    }
+
 	/**
 	 * @return PluginVersion[]
 	 */
@@ -81,11 +91,18 @@ class Plugin extends Model {
 		return PluginVersion::wherePluginid($this->id)->get();
 	}
 
-	/**
-	 * @return PluginVersion
-	 */
-	public function version($version){
-		return PluginVersion::wherePluginid($this->id)->whereVersion($version)->first();
-	}
+    /**
+     * @return PluginVersion
+     */
+    public function version($version){
+        return PluginVersion::wherePluginid($this->id)->whereVersion($version)->first();
+    }
+
+    /**
+     * @return PluginSpace
+     */
+    public function getSpace(){
+        return PluginSpace::whereId($this->space)->first();
+    }
 
 }
