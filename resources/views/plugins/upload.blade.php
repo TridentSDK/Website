@@ -53,7 +53,7 @@
                         {!! Form::label("plugin-file", "Plugin File") !!}
 
                         <input type="text" readonly="" class="form-control" placeholder="Browse...">
-                        {!! Form::file("plugin-file", ['accept' => '.jar']) !!}
+                        {!! Form::file("plugin-file") !!}
                         <div class="help-block with-errors"></div>
                     </div>
 
