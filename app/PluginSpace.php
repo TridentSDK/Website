@@ -26,6 +26,8 @@ class PluginSpace extends Model {
 
     protected $table = "plugin_space";
 
+    protected $fillable = ['entity_id', 'organisation', 'name'];
+
     /**
      * @param $id
      * @return PluginSpace|null
