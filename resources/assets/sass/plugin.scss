@@ -171,3 +171,35 @@
 .col-md-3-5 {
   width: 29.16%;
 }
+
+.hidden-checkboxes {
+  input[type="radio"], input[type="checkbox"] {
+    display: none;
+  }
+
+  span {
+    vertical-align: -3px;
+  }
+
+  img {
+    margin-right: 5px;
+  }
+
+  .btn.active {
+    background-color: #09880d !important;
+  }
+}
+
+.new-version-button {
+  margin-top: 0;
+  width: 100%;
+  padding: 15px;
+}
+
+.no-margin-above {
+  margin-top: 0;
+}
+
+.fake-form-group {
+  margin-top: 28px;
+}

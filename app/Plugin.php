@@ -62,6 +62,8 @@ class Plugin extends Model {
 
     protected $table = "plugin";
 
+    protected $fillable = ['userid', 'name', 'description', 'fulldescription', 'primary', 'secondary', 'license', 'space', 'artifact'];
+
     static $licenses = [
         1 => ["Academic Free License v3.0", "https://choosealicense.com/licenses/afl-3.0"],
         2 => ["GNU Affero General Public License v3.0", "https://choosealicense.com/licenses/agpl-3.0"],
@@ -94,6 +96,24 @@ class Plugin extends Model {
         29 => ["The Unlicense", "https://choosealicense.com/licenses/unlicense"],
         30 => ["Do What The F*ck You Want To Public License", "https://choosealicense.com/licenses/wtfpl"],
         31 => ["zlib License", "https://choosealicense.com/licenses/zlib"]
+    ];
+    
+    static $categories = [
+        1 => ["Admin Tools", "Iron_Pickaxe.png"],
+        2 => ["Anti-Griefing", "Iron_Sword.png"],
+        3 => ["Chat Related", "Paper.png"],
+        4 => ["Developer Tools", "Disc.png"],
+        5 => ["Economy", "Emerald.png"],
+        6 => ["Fixes", "Compass.png"],
+        7 => ["Fun", "Cake.png"],
+        8 => ["General", "Apple.png"],
+        9 => ["Informational", "Sign.png"],
+        10 => ["Mechanics", "Redstone.png"],
+        11 => ["Miscellaneous", "Slimeball.png"],
+        12 => ["Role-Playing", "Book.png"],
+        13 => ["Web Administration", "Painting.png"],
+        14 => ["World Manipulation", "Door.png"],
+        15 => ["World Generation", "Map.png"]
     ];
 
 	/**
@@ -151,6 +171,35 @@ class Plugin extends Model {
      */
     public function getLicense(){
         return Plugin::$licenses[$this->license];
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function canAddVersions($user){
+        if($user == null){
+            return false;
+        }
+
+        $space = $this->getSpace();
+
+        if($space->organisation){
+            // TODO
+        }
+
+        return $space->entity_id == $user->id;
+    }
+
+    /**
+     * @return array
+     */
+    static function licensesAsDropdown(){
+        $licenses = array();
+        foreach (Plugin::$licenses as $id => $license) {
+            $licenses[$id] = $license[0];
+        }
+        return $licenses;
     }
 
 }

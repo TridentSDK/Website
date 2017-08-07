@@ -26,4 +26,31 @@ class PluginSpace extends Model {
 
     protected $table = "plugin_space";
 
+    /**
+     * @param $id
+     * @return PluginSpace|null
+     */
+    public static function findSpace($id) {
+        var_dump($id);
+        if($id == -1){
+            $space = PluginSpace::whereEntityId(\Auth::user()->id)->whereOrganisation(false)->first();
+
+            var_dump($space);
+
+            if($space == null){
+                $space = PluginSpace::create([
+                    'entity_id' => \Auth::user()->id,
+                    'organisation' => false,
+                    'name' => \Auth::user()->username,
+                ]);
+            }
+
+            var_dump($space);
+
+            return $space;
+        }
+
+        return PluginSpace::whereEntityId(\Auth::user()->id)->whereOrganisation(true)->first();
+    }
+
 }

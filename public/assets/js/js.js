@@ -30,3 +30,15 @@ $(".search-dropdown-button").on("click", function () {
         });
     }
 });
+
+$("#plugin-primary-category").find("input").on("click", function (e) {
+    $("#plugin-primary-category").find("input").each(function (i, el) {
+        $(el).parent().removeClass("active")
+    });
+
+    $(e.target).parent().addClass("active")
+});
+
+$("#plugin-secondary-category").find("input").on("click", function (e) {
+    $(e.target).parent().toggleClass("active")
+});

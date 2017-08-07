@@ -12,7 +12,7 @@
         "recaptcha/php5": "v2.0.0",
         "laravelcollective/html": "^5.4.8",
         "greggilbert/recaptcha": "^2.2.0",
-        "aws/aws-sdk-php": "^3.32.3",
+        "league/flysystem-aws-s3-v3": "~1.0",
         "doctrine/dbal": "^2.5.13"
     },
     "require-dev": {

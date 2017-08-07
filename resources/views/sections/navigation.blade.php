@@ -38,4 +38,6 @@
         </div>
     </div>
 </div>
-@include("sections.login-modal")
+@if(!Auth::check())
+    @include("sections.login-modal")
+@endif

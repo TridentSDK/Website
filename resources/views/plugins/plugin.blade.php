@@ -13,6 +13,11 @@
             </div>
         </div>
         <div class="col-md-4 col-md-3-5">
+            @if($plugin->canAddVersions(Auth::user()))
+                <a href="/plugin/{{ $plugin->id }}/upload" class="btn btn-warning btn-raised new-version-button">
+                    Upload New Version
+                </a>
+            @endif
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">Info</h3>

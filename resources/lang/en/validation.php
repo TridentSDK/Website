@@ -92,9 +92,27 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'plugin-name' => [
+            'required' => 'Plugin name is required.',
+            'between' => 'Plugin name must be between :min and :max characters.'
         ],
+        'short-description' => [
+            'required' => 'Short description is required.',
+            'between' => 'Short description must be between :min and :max characters.'
+        ],
+        'full-description' => [
+            'required' => 'Full description is required.',
+            'string' => 'Full description must be at least :min characters.'
+        ],
+        'primary-category' => [
+            'required' => 'Primary category is required.'
+        ],
+        'secondary-category' => [
+            'required' => 'Secondary category is required.'
+        ],
+        'g-recaptcha-response' => [
+            'required' => 'ReCaptcha is required.'
+        ]
     ],
 
     /*

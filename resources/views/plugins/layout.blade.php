@@ -43,10 +43,10 @@
                 </div>
                 <div class="panel-body plugin-filter">
                     <div class="btn-group-vertical" role="group">
-                        @foreach($filters as $name => $image)
+                        @foreach(\TridentSDK\Plugin::$categories as $id => $filter)
                             <button type="button" class="btn btn-default btn-raised">
-                                <img src="{{ url("/assets/images/icons/".$image) }}" />
-                                {{ $name }}
+                                <img src="{{ url("/assets/images/icons/".$filter[1]) }}" />
+                                {{ $filter[0] }}
                             </button>
                         @endforeach
                     </div>

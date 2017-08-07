@@ -3,7 +3,7 @@
         <h3 class="panel-title">Latest Commits</h3>
     </div>
     <div class="panel-body">
-        <h3 class="nospace">TridentSDK <img src="https://travis-ci.org/TridentSDK/TridentSDK.svg?branch=bleeding-edge" class="build-status"/></h3>
+        <h3 class="nospace">TridentSDK <img src="https://travis-ci.org/TridentSDK/TridentSDK.svg?branch=bleeding-edge" class="build-status" alt="TridentSDK Build Status"/></h3>
         <div class="media">
             @if(isset($tridentSDKCommit->author))
                 <a class="pull-left" href="#">
@@ -17,7 +17,7 @@
             @endif
         </div>
 
-        <h3 class="nospace" style="margin-top: 15px;">Trident <img src="https://travis-ci.org/TridentSDK/Trident.svg?branch=bleeding-edge" class="build-status"/></h3>
+        <h3 class="nospace" style="margin-top: 15px;">Trident <img src="https://travis-ci.org/TridentSDK/Trident.svg?branch=bleeding-edge" class="build-status" alt="Trident Build Status"/></h3>
         <div class="media">
             @if(isset($tridentCommit->author))
                 <a class="pull-left" href="#">

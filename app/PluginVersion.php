@@ -40,6 +40,8 @@ class PluginVersion extends Model {
 
     protected $table = "plugin_version";
 
+    protected $fillable = ['pluginid', 'version', 'filename', 'changelog', 'trident_version', 'md5_hash'];
+
 	/**
 	 * @return PluginVersionDependency[]
 	 */

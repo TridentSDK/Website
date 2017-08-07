@@ -1,6 +1,6 @@
 <?php
 
-Route::any("/net/tridentsdk/plugins/{space}/{plugin}/maven-metadata.xml", function($space, $plugin){
+Route::any("/trd/{space}/{plugin}/maven-metadata.xml", function($space, $plugin){
 	$pluginModel = \TridentSDK\Plugin::findBySpace($space, $plugin);
 
 	if(is_null($pluginModel)){
@@ -33,7 +33,7 @@ Route::any("/net/tridentsdk/plugins/{space}/{plugin}/maven-metadata.xml", functi
 
 CONST MAVEN_PROJECT_DEF = "<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\"/>";
 
-Route::any("/net/tridentsdk/plugins/{space}/{plugin}/{version}/{file}", function($space, $plugin, $version, $file){
+Route::any("/trd/{space}/{plugin}/{version}/{file}", function($space, $plugin, $version, $file){
 	$pluginModel = \TridentSDK\Plugin::findBySpace($space, $plugin);
 
 	if(is_null($pluginModel)){
