@@ -6,7 +6,7 @@ use Illuminate\Validation\Rule;
 use TridentSDK\Plugin;
 use TridentSDK\Utils\Trident;
 
-class PostPluginRequest extends Request {
+class UploadPluginRequest extends Request {
 
     protected $errorBag = 'plugin';
 

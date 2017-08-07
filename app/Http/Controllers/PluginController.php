@@ -73,7 +73,7 @@ class PluginController extends Controller {
         ]);
     }
 
-    public function postUpload($id){
+    public function postUpload(UploadPluginRequest $request, $id){
         $plugin = Plugin::find($id);
 
         if($plugin == null){
