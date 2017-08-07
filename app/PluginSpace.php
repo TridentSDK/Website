@@ -33,11 +33,8 @@ class PluginSpace extends Model {
      * @return PluginSpace|null
      */
     public static function findSpace($id) {
-        var_dump($id);
         if($id == -1){
             $space = PluginSpace::whereEntityId(\Auth::user()->id)->whereOrganisation(false)->first();
-
-            var_dump($space);
 
             if($space == null){
                 $space = PluginSpace::create([
@@ -46,8 +43,6 @@ class PluginSpace extends Model {
                     'name' => \Auth::user()->username,
                 ]);
             }
-
-            var_dump($space);
 
             return $space;
         }
