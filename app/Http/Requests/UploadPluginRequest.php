@@ -30,7 +30,7 @@ class UploadPluginRequest extends Request {
             "plugin-version-major" => "required|between:0,9999",
             "plugin-version-minor" => "required|between:0,9999",
             "plugin-version-patch" => "required|between:0,9999",
-            "plugin-file" => "required|file|mimetypes:application/java-archive|max:15000",
+            "plugin-file" => "required|file|max:15000",
             "changelog" => "required|between:10,1000",
             'g-recaptcha-response' => 'required|recaptcha'
         ];
