@@ -288,3 +288,30 @@ img.placeholder-image-32 {
 .normal-captcha .grecaptcha-badge {
   position: initial !important;
 }
+
+.nopadding {
+  padding: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.straight-corner {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+
+.panel-margin-fixer {
+  margin-top: -1px;
+}
+
+.panel-group .panel+.panel {
+  margin-top: 0;
+}
+
+.panel-success .panel-title a:hover, .panel-success .panel-title a:focus {
+  color: #fff;
+  text-decoration: none;
+}
