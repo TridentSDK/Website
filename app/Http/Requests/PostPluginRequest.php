@@ -32,7 +32,7 @@ class PostPluginRequest extends Request {
             "full-description" => "required|between:10,1000",
             "primary-category" => ["required", Rule::in(array_keys(Plugin::$categories))],
             "secondary-category.*" => ["required", Rule::in(array_keys(Plugin::$categories))],
-            'g-recaptcha-response' => 'required|recaptcha'
+            'g-recaptcha-response' => 'required|captcha'
         ];
     }
 }

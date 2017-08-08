@@ -69,9 +69,9 @@
                         </script>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group normal-captcha">
                         {!! Form::label("captcha", "Captcha") !!}
-                        {!! Recaptcha::render() !!}
+                        {!! app('captcha')->render(); !!}
                     </div>
 
                     {!! Form::submit("Upload", ["class" => "btn btn-primary"]) !!}

@@ -44,7 +44,7 @@ class AuthController extends Controller {
         if(\Auth::attempt(["username" => Request::get("username"), "password" => Request::get("password")], Request::has("remember"))){
             return redirect()->back();
         }else{
-            return redirect()->withErrors("Invalid password.", "login");
+            return redirect()->back()->withErrors("Invalid password.", "login");
         }
     }
 

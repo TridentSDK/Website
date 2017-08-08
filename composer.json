@@ -9,11 +9,11 @@
         "laravel/framework": "5.4.*",
         "barryvdh/laravel-debugbar": "^2.4.3",
         "longman/telegram-bot": "^0.46.0",
-        "recaptcha/php5": "v2.0.0",
         "laravelcollective/html": "^5.4.8",
         "greggilbert/recaptcha": "^2.2.0",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "doctrine/dbal": "^2.5.13"
+        "doctrine/dbal": "^2.5.13",
+        "albertcht/invisible-recaptcha": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.6.0",

@@ -42,7 +42,6 @@
                     <div class="help-block with-errors"></div>
                 </div>
 
-
                 <div class="checkbox">
                     <label>
                         {{ Form::checkbox("remember") }} Remember
@@ -76,11 +75,7 @@
 
                         <div class="alert alert-danger" style="margin-bottom: 0;" role="alert">
                             @foreach($errors->getBag("register")->getMessages() as $field => $error)
-                                @if($field === "g-recaptcha-response")
-                                    {{ "Invalid Captcha." }}
-                                @else
-                                    {{ $error[0] }}
-                                @endif
+                                {{ $error[0] }}
                                 <br/>
                             @endforeach
                         </div>
@@ -113,9 +108,9 @@
                         <div class="help-block with-errors"></div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group normal-captcha">
                         {!! Form::label("captcha", "Captcha *") !!}
-                        {!! Recaptcha::render() !!}
+                        {!! app('captcha')->render(); !!}
                     </div>
                 </div>
                 <div class="modal-footer">

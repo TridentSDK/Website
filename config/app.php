@@ -172,7 +172,7 @@ return [
 	    /*
 	     * Recaptcha Validator
 	     */
-	    Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+        AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
     ],
 
     /*

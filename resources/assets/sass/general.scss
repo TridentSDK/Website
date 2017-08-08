@@ -284,3 +284,7 @@ img.placeholder-image-32 {
   width: 32px;
   height: 32px;
 }
+
+.normal-captcha .grecaptcha-badge {
+  position: initial !important;
+}

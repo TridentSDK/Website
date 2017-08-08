@@ -6,6 +6,8 @@ use TridentSDK\Http\Requests\Request;
 
 class LoginUserRequest extends Request {
 
+    protected $errorBag = 'login';
+
     /**
      * Determine if the user is authorized to make this request.
      *

@@ -32,7 +32,7 @@ class UploadPluginRequest extends Request {
             "plugin-version-patch" => "required|between:0,9999",
             "plugin-file" => "required|file|max:15000",
             "changelog" => "required|between:10,1000",
-            'g-recaptcha-response' => 'required|recaptcha'
+            'g-recaptcha-response' => 'required|captcha'
         ];
     }
 }

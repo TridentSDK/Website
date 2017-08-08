@@ -27,7 +27,7 @@ class RegisterUserRequest extends Request {
             "username" => "required|between:6,30|unique:user",
             "email"    => "required|email|unique:user",
             "password" => "required|confirmed|same:password_confirmation",
-	        'g-recaptcha-response' => 'required|recaptcha'
+	        'g-recaptcha-response' => 'required|captcha'
         ];
     }
 }
