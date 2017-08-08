@@ -159,3 +159,5 @@ Route::post("/plugins/new", "PluginController@postNewPlugin");
 Route::get("/plugin/{id}", "PluginController@plugin");
 Route::get("/plugin/{id}/upload", "PluginController@upload");
 Route::post("/plugin/{id}/upload", "PluginController@postUpload");
+
+Route::get("/version/{version}/download", "PluginController@download");

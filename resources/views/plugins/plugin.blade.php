@@ -36,7 +36,19 @@
                                             </div>
                                             <div id="version-{{ $version->id }}" class="panel-collapse collapse{{ $first ? " in" : "" }}" role="tabpanel" aria-labelledby="version-heading-{{ $version->id }}">
                                                 <div class="panel-body">
-                                                    <a class="btn btn-success" href="{{ url(Storage::url("plugins/" . $space->name . "/" . $plugin->artifact . "/" . $version->filename)) }}">Download</a>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <a class="btn btn-info btn-raised pull-right nomargin" href="/version/{{ $version->id }}/download">Download</a>
+
+                                                            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> <strong>Downloads:</strong> {{ $version->downloads }}<br>
+                                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <strong>Uploaded:</strong> {{ $version->created_at->diffForHumans() }}<br>
+                                                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <strong>File Size:</strong> {{ \TridentSDK\Utils\File::bytesToHuman($version->file_size) }}<br>
+                                                            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> <strong>MD5:</strong> {{ $version->md5_hash }}<br>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            {{ $version->changelog }}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

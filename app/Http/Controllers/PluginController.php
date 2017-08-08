@@ -114,6 +114,7 @@ class PluginController extends Controller {
         $file = \Request::file('plugin-file');
         $versionText = $uMajor . "." . $uMinor . "." . $uPatch;
         $filename = $plugin->artifact . "-" . $versionText . ".jar";
+        $fileSize = $file->getSize();
 
         $file->storeAs("plugins" . DIRECTORY_SEPARATOR . $space->name . DIRECTORY_SEPARATOR . $plugin->artifact, $filename);
 
@@ -123,7 +124,8 @@ class PluginController extends Controller {
             'filename' => $filename,
             'changelog' => \Request::get("changelog"),
             'trident_version' => \Request::get("trident-version"),
-            'md5_hash' => md5_file($file->path())
+            'md5_hash' => md5_file($file->path()),
+            'file_size' => $fileSize
         ]);
 
         $plugin->latestversion = $versionText;
@@ -133,6 +135,20 @@ class PluginController extends Controller {
             "plugin" => $plugin,
             "url" => "/plugin/".$plugin->id
         ]);
+    }
+
+    public function download($version){
+        $model = PluginVersion::find($version);
+        $plugin = $model->getPlugin();
+        $space = $plugin->getSpace();
+
+        $plugin->downloads++;
+        $plugin->save();
+
+        $model->downloads++;
+        $model->save();
+
+        return redirect($model->downloadUrl($space->name, $plugin->artifact), 301);
     }
 
 }
