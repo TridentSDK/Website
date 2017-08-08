@@ -81,31 +81,33 @@ class PluginController extends Controller {
             return redirect("/404/");
         }
 
-        list($major, $minor, $patch) = explode(".", $plugin->latestversion);
-
         $uMajor = \Request::get("plugin-version-major");
         $uMinor = \Request::get("plugin-version-minor");
         $uPatch = \Request::get("plugin-version-patch");
 
-        $newVersionLower = false;
-        if($major >= $uMajor){
-            if($major > $uMajor){
-                $newVersionLower = true;
-            }else if($minor >= $uMinor){
-                if($minor > $uMinor){
+        if(!empty($plugin->latestversion)) {
+            list($major, $minor, $patch) = explode(".", $plugin->latestversion);
+
+            $newVersionLower = false;
+            if ($major >= $uMajor) {
+                if ($major > $uMajor) {
                     $newVersionLower = true;
-                }else if($patch >= $uPatch){
-                    if($patch > $uPatch){
+                } else if ($minor >= $uMinor) {
+                    if ($minor > $uMinor) {
                         $newVersionLower = true;
-                    }else{
-                        return redirect()->back()->withErrors("New version is identical to previous version (" . $plugin->latestversion . ")", "plugin");
+                    } else if ($patch >= $uPatch) {
+                        if ($patch > $uPatch) {
+                            $newVersionLower = true;
+                        } else {
+                            return redirect()->back()->withErrors("New version is identical to previous version (" . $plugin->latestversion . ")", "plugin");
+                        }
                     }
                 }
             }
-        }
 
-        if($newVersionLower){
-            return redirect()->back()->withErrors("New version lower than previous version (" . $plugin->latestversion . ")", "plugin");
+            if ($newVersionLower) {
+                return redirect()->back()->withErrors("New version lower than previous version (" . $plugin->latestversion . ")", "plugin");
+            }
         }
 
         $space = $plugin->getSpace();
