@@ -3,6 +3,7 @@
 namespace TridentSDK\Http\Controllers;
 
 use TridentSDK\Http\Requests\PostPluginRequest;
+use TridentSDK\Http\Requests\UploadPluginRequest;
 use TridentSDK\Plugin;
 use TridentSDK\PluginSpace;
 use TridentSDK\PluginVersion;
