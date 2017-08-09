@@ -17,10 +17,9 @@
   ],
   "dependencies": {
     "bootstrap-material-design": "^0.5.10",
-    "bootstrap": "^3.3.6",
-    "jquery-ui": "^1.12.0",
-    "summernote": "^0.8.1",
-    "jquery": "^2.2",
-    "bootstrap-validator": "^0.11.0"
+    "bootstrap": "^3.3.7",
+    "summernote": "^0.8.6",
+    "jquery": "^3.2.1",
+    "bootstrap-validator": "^0.11.9"
   }
 }

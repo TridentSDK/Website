@@ -18,7 +18,6 @@
     ga('send', 'pageview');
 </script>
 <script async type="text/javascript" src="https://tridentsdk.atlassian.net/s/a4a7b9334313b4bdad6cf58a80507f0b-T/en_USkpukdf/64003/8/1.4.15/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&amp;collectorId=368ecb29"></script>
-<script src="{{ asset("/bower_components/jquery-ui/jquery-ui.min.js") }}" type="text/javascript"></script>
 <script src="{{ asset("/assets/js/jquery.noty.packaged.min.js") }}" type="text/javascript"></script>
 <script src="{{ asset("/assets/js/nestable.js") }}" type="text/javascript"></script>
 <script src="{{ asset("/assets/js/jquery.jeditable.mini.js") }}" type="text/javascript"></script>
