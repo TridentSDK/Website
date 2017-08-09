@@ -30,7 +30,7 @@ class CreatePermissionTables extends Migration
 
         Schema::dropIfExists($config['user_has_permissions']);
         Schema::create($config['user_has_permissions'], function (Blueprint $table) use ($config) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id');
             $table->integer('permission_id')->unsigned();
 
             $table->foreign('user_id')
@@ -49,7 +49,7 @@ class CreatePermissionTables extends Migration
         Schema::dropIfExists($config['user_has_roles']);
         Schema::create($config['user_has_roles'], function (Blueprint $table) use ($config) {
             $table->integer('role_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id');
 
             $table->foreign('role_id')
                 ->references('id')
