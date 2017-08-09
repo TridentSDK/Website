@@ -173,6 +173,13 @@ return [
 	     * Recaptcha Validator
 	     */
         AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
+
+        /*
+         * Backpack
+         */
+        Backpack\Base\BaseServiceProvider::class,
+        Backpack\CRUD\CrudServiceProvider::class,
+        Backpack\PermissionManager\PermissionManagerServiceProvider::class,
     ],
 
     /*

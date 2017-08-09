@@ -2,10 +2,12 @@
 
 namespace TridentSDK;
 
+use Backpack\CRUD\CrudTrait;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\RoutesNotifications;
+use Spatie\Permission\Traits\HasRoles;
 use TridentSDK\Enums\UserRank;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -63,7 +65,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class User extends Authenticatable {
 
-    use SoftDeletes, CanResetPassword, Notifiable;
+    use SoftDeletes;
+    use CanResetPassword;
+    use Notifiable;
+    use CrudTrait;
+    use HasRoles;
 
     protected $table = "user";
 

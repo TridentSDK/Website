@@ -13,3 +13,7 @@ storage/
 bower_components
 npm-debug.log
 /public/css/*
+/public/vendor
+/public/packages
+/resources/views/vendor
+/resources/lang/vendor

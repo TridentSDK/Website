@@ -1,5 +1,13 @@
 <?php
 
+$errorPages = [400, 401, 403, 404, 405, 408, 429, 500, 503];
+
+foreach ($errorPages as $error){
+    Route::get("/" . $error . "/", function() use ($error) {
+        return view('errors.' . $error);
+    });
+}
+
 $home = function () {
 	$news = \TridentSDK\NewsArticle::orderBy("created_at", "DESC")->paginate(4);
 	$tridentSDKCommit = json_decode(\TridentSDK\Config::where("key", "=", "tridentSDKCommit")->first()->value);
@@ -143,10 +151,6 @@ Route::get("/article/{id}", function ($id){
 	return view('home.news.layout', [
 		"article" => $article,
 	]);
-});
-
-Route::get("/404/", function(){
-	return view('errors.404');
 });
 
 Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');

@@ -13,7 +13,10 @@
         "greggilbert/recaptcha": "^2.2.0",
         "league/flysystem-aws-s3-v3": "~1.0",
         "doctrine/dbal": "^2.5.13",
-        "albertcht/invisible-recaptcha": "^1.6"
+        "albertcht/invisible-recaptcha": "^1.6",
+        "backpack/base": "^0.7.21",
+        "backpack/permissionmanager": "^2.1",
+        "backpack/crud": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.6.0",
