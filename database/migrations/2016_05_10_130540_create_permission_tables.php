@@ -14,18 +14,21 @@ class CreatePermissionTables extends Migration
     {
         $config = config('laravel-permission.table_names');
 
+        Schema::dropIfExists($config['roles']);
         Schema::create($config['roles'], function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->timestamps();
         });
 
+        Schema::dropIfExists($config['permissions']);
         Schema::create($config['permissions'], function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->timestamps();
         });
 
+        Schema::dropIfExists($config['user_has_permissions']);
         Schema::create($config['user_has_permissions'], function (Blueprint $table) use ($config) {
             $table->integer('user_id')->unsigned();
             $table->integer('permission_id')->unsigned();
@@ -43,6 +46,7 @@ class CreatePermissionTables extends Migration
             $table->primary(['user_id', 'permission_id']);
         });
 
+        Schema::dropIfExists($config['user_has_roles']);
         Schema::create($config['user_has_roles'], function (Blueprint $table) use ($config) {
             $table->integer('role_id')->unsigned();
             $table->integer('user_id')->unsigned();
@@ -59,6 +63,7 @@ class CreatePermissionTables extends Migration
 
             $table->primary(['role_id', 'user_id']);
 
+            Schema::dropIfExists($config['role_has_permissions']);
             Schema::create($config['role_has_permissions'], function (Blueprint $table) use ($config) {
                 $table->integer('permission_id')->unsigned();
                 $table->integer('role_id')->unsigned();
