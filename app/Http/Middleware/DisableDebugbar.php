@@ -13,6 +13,8 @@ class DisableDebugbar {
             if (!\Auth::check() || !\Auth::user()->developer || !starts_with($response->headers->get("Content-Type"), "text/html")) {
                 \Debugbar::disable();
             }
+        }else if(!\Auth::check()){
+            \Debugbar::disable();
         }
 
         return $response;
