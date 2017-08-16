@@ -8,26 +8,26 @@
 
     <div class="row plugins-page">
         <div class="col-lg-10 col-md-9 col-sm-8 plugin-list">
-            <div class="row search-bar">
+            <div class="row search-bar mb-3">
                 <div class="col-xs-12 col-sm-10 search-box">
-                    <div class="panel panel-default panel-body">
-                        <input type="text" class="form-control" placeholder="Search..."/>
+                    <div class="card">
+                        <div class="card-body">
+                            <input type="text" class="form-control" placeholder="Search..."/>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2 new-plugin">
                     <a class="btn btn-success btn-raised" href="{{ url("/plugins/new") }}">New Plugin</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    @if(count($plugins) == 0)
-                        <div class="col-sm-12 plugin-element">
-                            @include("utils.info", ["message" => "No Plugins Found!", "close" => false, "spacedown" => false])
-                        </div>
-                    @else
-                        @each('plugins.card', $plugins->items(), 'plugin')
-                    @endif
-                </div>
+            <div class="row plugin-cards mb-3">
+                @if(count($plugins) == 0)
+                    <div class="col-sm-12 plugin-element">
+                        @include("utils.info", ["message" => "No Plugins Found!", "close" => false, "spacedown" => false])
+                    </div>
+                @else
+                    @each('plugins.card', $plugins->items(), 'plugin')
+                @endif
             </div>
             @if(count($plugins) > 0)
                 <div class="centered">
@@ -37,11 +37,11 @@
         </div>
 
         <div class="col-lg-2 col-md-3 col-sm-4">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Filters</h3>
+            <div class="card">
+                <div class="card-header">
+                    Filters
                 </div>
-                <div class="panel-body plugin-filter">
+                <div class="card-body plugin-filter nopadding">
                     <div class="btn-group-vertical" role="group">
                         @foreach(\TridentSDK\Plugin::$categories as $id => $filter)
                             <button type="button" class="btn btn-default btn-raised">

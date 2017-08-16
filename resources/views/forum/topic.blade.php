@@ -42,32 +42,32 @@
                     @php($lastPostDate = $post->created_at)
                 @else
                     @if($lastPostDate->diffInYears($post->created_at) >= 1)
-                        <div class="alert alert-info alert-no-margin" role="alert">
+                        <div class="alert alert-info alert-no-margin straight-corner" role="alert">
                             <span href="#" class="alert-link">{{ $lastPostDate->diffInYears($post->created_at) }} year{{ $lastPostDate->diffInYears($post->created_at) > 1 ? "s" : "" }} later</span>
                         </div>
                     @elseif($lastPostDate->diffInMonths($post->created_at) >= 1)
-                        <div class="alert alert-info alert-no-margin" role="alert">
+                        <div class="alert alert-info alert-no-margin straight-corner" role="alert">
                             <span href="#" class="alert-link">{{ $lastPostDate->diffInMonths($post->created_at) }} month{{ $lastPostDate->diffInMonths($post->created_at) > 1 ? "s" : "" }} later</span>
                         </div>
                     @elseif($lastPostDate->diffInWeeks($post->created_at) >= 1)
-                        <div class="alert alert-info alert-no-margin" role="alert">
+                        <div class="alert alert-info alert-no-margin straight-corner" role="alert">
                             <span href="#" class="alert-link">{{ $lastPostDate->diffInWeeks($post->created_at) }} week{{ $lastPostDate->diffInWeeks($post->created_at) > 1 ? "s" : "" }} later</span>
                         </div>
                     @endif
 
                     @php($lastPostDate = $post->created_at)
                 @endif
-                <div class="panel panel-{{ $first ? "info" : "default" }}">
-                    <div class="panel-heading clearfix">
+                <div class="card {{ !$first ? "straight-corner" : "straight-bottom-corners" }}">
+                    <div class="card-header clearfix">
                         <span class="title-linker" id="post-{{ $post->id }}"></span>
-                        <h3 class="panel-title pull-left">{{ $topic->name }}
+                        <span class="pull-left">{{ $topic->name }}
                             <small>
                                 <a href="/forum/topic/{{ $topic->id }}/?page={{ $posts->currentPage() }}#post-{{ $post->id }}" title="#{{ $post->id }}">#{{ $enum++ }}</a>
                             </small>
-                        </h3>
-                        <h3 class="panel-title pull-right" title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}</h3>
+                        </span>
+                        <span class="pull-right" title="{{ $post->created_at }}">{{ $post->created_at->diffForHumans() }}</span>
                     </div>
-                    <div class="panel-body" style="padding: 0 15px;">
+                    <div class="card-body" style="padding: 0 15px;">
                         <div class="row">
                             <div class="col-md-2 forum-avatar-box" style="padding: 15px">
                                 <div class="thumbnail">
@@ -91,22 +91,22 @@
                                 <div class="pull-right forum-post-buttons">
                                     @if(Auth::check() && Auth::getUser()->rank()->isModerator())
                                         @if($first)
-                                            <button type="button" class="btn btn-xs btn-warning btn-raised" data-toggle="modal" data-target="#moveTopicModal" data-topic="{{ $topic->id }}">MOVE</button>
-                                            <a href="/forum/topic/{{ $topic->id }}/stick/" class="btn btn-xs btn-warning btn-raised">STICK</a>
-                                            <a href="/forum/topic/{{ $topic->id }}/lock/" class="btn btn-xs btn-danger btn-raised">LOCK</a>
-                                            <button type="button" class="btn btn-xs btn-danger btn-raised" data-toggle="modal" data-target="#deleteTopicModal" data-topic="{{ $topic->id }}">DELETE</button>
+                                            <button type="button" class="btn btn-sm btn-warning btn-raised" data-toggle="modal" data-target="#moveTopicModal" data-topic="{{ $topic->id }}">MOVE</button>
+                                            <a href="/forum/topic/{{ $topic->id }}/stick/" class="btn btn-sm btn-warning btn-raised">STICK</a>
+                                            <a href="/forum/topic/{{ $topic->id }}/lock/" class="btn btn-sm btn-danger btn-raised">LOCK</a>
+                                            <button type="button" class="btn btn-sm btn-danger btn-raised" data-toggle="modal" data-target="#deleteTopicModal" data-topic="{{ $topic->id }}">DELETE</button>
                                         @else
-                                            <button type="button" class="btn btn-xs btn-danger btn-raised" data-toggle="modal" data-target="#deletePostModal" data-post="{{ $post->id }}">DELETE</button>
+                                            <button type="button" class="btn btn-sm btn-danger btn-raised" data-toggle="modal" data-target="#deletePostModal" data-post="{{ $post->id }}">DELETE</button>
                                         @endif
                                     @endif
 
                                     @if(Auth::check() && $post->canBeEditedBy(Auth::getUser()))
-                                        <a href="/forum/edit/{{ $post->id }}/" class="btn btn-xs btn-info btn-raised">EDIT</a>
+                                        <a href="/forum/edit/{{ $post->id }}/" class="btn btn-sm btn-info btn-raised">EDIT</a>
                                     @endif
 
-                                    <div class="btn btn-xs btn-success btn-raised post-like-button{{ Auth::check() ? ($post->likedBy(Auth::user()) ? " liked" : "") : "" }}" data-post="{{ $post->id }}">
+                                    <div class="btn btn-sm btn-success btn-raised post-like-button{{ Auth::check() ? ($post->likedBy(Auth::user()) ? " liked" : "") : "" }}" data-post="{{ $post->id }}">
                                         <span class="badge" style="margin-right: 3px">{{ $post->likeCount() }}</span>
-                                        <span class="glyphicon glyphicon-thumbs-up" style="font-size: 15px; margin-top: -10px; top: 4px;" aria-hidden="true"></span>
+                                        <span class="oi oi-thumb-up"></span>
                                     </div>
                                 </div>
                             </div>
@@ -122,16 +122,18 @@
         @endforeach
     </div>
 
-    @include("forum.breadcrumbs")
+    <div class="mt-3">
+        @include("forum.breadcrumbs")
+    </div>
 
     <div class="centered">
         @include("utils.paginator", ["paginator" => $posts])
     </div>
 
     @if(Auth::check())
-        <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">New Post</h3></div>
-            <div class="panel-body" style="padding: 0 15px;">
+        <div class="card mb-3">
+            <div class="card-header">New Post</div>
+            <div class="card-body" style="padding: 0 15px;">
 
                 @if($errors->getBag("topic")->any())
                     @include("utils.alert", ["message" => $errors->getBag("topic")->first(), "close" => false, "spacedown" => false])
@@ -156,6 +158,7 @@
                         <script>
                             $(document).ready(function () {
                                 $('#post_text').summernote({minHeight: 200});
+                                $('.note-popover').css({ display: 'none' });
                             });
                         </script>
 

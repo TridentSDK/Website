@@ -5,24 +5,26 @@
 @section('content')
     @include("forum.breadcrumbs")
 
-    <div class="panel panel-info">
-        <div class="panel-heading clearfix">
-            <h3 class="panel-title pull-left">{{ $category->name }}<br><small>{{ $category->description }}</small></h3>
+    <div class="card mb-3">
+        <div class="card-header bg-primary text-light">
+            <span class="float-left">{{ $category->name }}<br><small>{{ $category->description }}</small></span>
             @if(Auth::check())
-                <a href="/forum/new/topic/{{ $category->id }}/" type="button" class="btn btn-success btn-sm btn-raised pull-right" style="margin-top: 4px; margin-bottom: 0;">New Topic</a>
+                <a href="/forum/new/topic/{{ $category->id }}/" class="float-right" style="margin-top: 4px; margin-bottom: 0;">
+                    <button type="button" class="btn btn-success my-2 my-sm-0">New Topic</button>
+                </a>
             @endif
         </div>
         @if($category->hasChildren())
-            <table class="table" style="margin-bottom: 10px">
+            <table class="table" style="margin-bottom: 0">
                 <thead>
                 <tr style="border-bottom: 2px solid #ddd;">
-                    <th style="border-bottom: 0; padding-left: 15px;">Category</th>
+                    <th style="border-bottom: 0; padding-left: 20px; width: 360px;">Category</th>
                     <th style="border-bottom: 0">Last Post</th>
                     <th style="float: right; border-bottom: 0">Topics / Posts</th>
                 </tr>
                 </thead>
             </table>
-            <div class="list-group">
+            <div class="list-group list-group-flush">
                 @foreach($category->children() as $child)
                     <div class="list-group-item clearfix">
                         <div style="width: 350px; float: left;">
@@ -40,8 +42,10 @@
                                 None
                             @endif
                         </div>
-                        <span class="badge">{{ $child->posts }}</span>
-                        <span class="badge">{{ $child->topics }}</span>
+                        <div class="float-right">
+                            <span class="badge badge-primary">{{ $child->topics }}</span>
+                            <span class="badge badge-primary">{{ $child->posts }}</span>
+                        </div>
                     </div>
                     <div class="list-group-separator"></div>
                 @endforeach

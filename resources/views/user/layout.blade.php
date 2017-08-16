@@ -5,21 +5,16 @@
 @section('content')
     @if($user != null)
 
-        <div class="clearfix headbox">
-            <h1 class="pull-left">{{ $user->username }}</h1>
+        <div class="headbox">
+            <h1 class="display-4">{{ $user->username }}</h1>
         </div>
         <hr />
 
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-md-3">
-                <div class="thumbnail">
-                    <img src="{{ $user->getAvatar(253) }}" alt="Avatar of {{ $user->username }}">
-                </div>
-                <div class="panel panel-info plugin-sidebar">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Info</h3>
-                    </div>
-                    <div class="panel-body">
+                <div class="card">
+                    <img class="card-img-top" src="{{ $user->getAvatar(253) }}" alt="Avatar of {{ $user->username }}">
+                    <div class="card-body">
                         <span class="da">Last Online</span>
                         <span class="dd">{{ $user->last_online == 0 ? "Never" : (time() - $user->last_online < 300 ? "Now" : \Carbon\Carbon::createFromTimestamp($user->last_online)->diffForHumans()) }}</span>
                         <span class="da">Joined</span>
@@ -32,14 +27,14 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="panel panel-info plugin-sidebar nopadding">
-                    <div class="panel-body">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#posts" role="tab" data-toggle="tab">Recent Posts</a></li>
-                            <li><a href="#topics" role="tab" data-toggle="tab">Recent Topics</a></li>
+                <div class="card nopadding">
+                    <div class="card-body tabbed">
+                        <ul class="nav nav-tabs justify-content-center bg-primary" role="tablist">
+                            <li class="nav-item"><a class="text-light nav-link active" href="#posts" role="tab" data-toggle="tab">Recent Posts</a></li>
+                            <li class="nav-item"><a class="text-light nav-link" href="#topics" role="tab" data-toggle="tab">Recent Topics</a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="posts">
+                            <div class="tab-pane active nopadding" id="posts">
                                 @if($user->topicCount() > 0)
                                     <table class="table table-striped">
                                         <thead>
@@ -61,7 +56,7 @@
                                     @include("utils.info", ["message" => "No Posts Found!", "close" => false, "spacedown" => false])
                                 @endif
                             </div>
-                            <div class="tab-pane fade" id="topics">
+                            <div class="tab-pane nopadding" id="topics">
                                 @if($user->postCount() > 0)
                                     <table class="table table-striped">
                                         <thead>

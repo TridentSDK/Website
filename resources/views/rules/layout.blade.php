@@ -3,11 +3,11 @@
 @section("title", "Rules")
 
 @section('content')
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">Rules</h3>
+    <div class="card">
+        <div class="card-header bg-info text-light">
+            Rules
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             {!! $rules !!}
         </div>
     </div>

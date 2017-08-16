@@ -11,6 +11,7 @@
   content: "";
   height: 140px;
   margin: -140px 0 0;
+  visibility: hidden;
 }
 
 .forum-post-buttons .btn {
@@ -18,19 +19,19 @@
 }
 
 .post-like-button.liked {
-  .glyphicon-thumbs-up:before {
-    content: "\e013";
+  .oi-thumb-up:before {
+    content: '\e0cc';
   }
 
   &:hover {
     background-color: #f55549 !important;
 
-    .badge {
-      color: #f55549 !important;
-    }
-
-    .glyphicon-thumbs-up:before {
-      content: "\e126";
+    .oi-thumb-up:before {
+      content: '\e0cb';
     }
   }
+}
+
+.card .alert {
+  margin-bottom: 0
 }

@@ -189,6 +189,7 @@ class ForumController extends Controller {
         $post->userid = \Auth::user()->id;
         $post->text = \Request::get("post_text");
         $post->topic = $topic->id;
+        $post->deleted = false;
         $post->save();
 
         $url = "/forum/topic/".$topic->id;

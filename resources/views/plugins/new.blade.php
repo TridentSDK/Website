@@ -4,8 +4,8 @@
 
 @section('content')
     <ol class="breadcrumb headcrab">
-        <li><a href="/plugins/">Plugins</a></li>
-        <li class="/plugins/new">New Plugin</li>
+        <li class="breadcrumb-item"><a href="/plugins/">Plugins</a></li>
+        <li class="breadcrumb-item active">New Plugin</li>
     </ol>
 
     @if(isset($errors) && $errors->getBag("plugin")->any())
@@ -18,9 +18,9 @@
     @endif
 
     @if(Auth::check())
-        <div class="panel">
+        <div class="card">
             {!! Form::open(["id" => "pluginForm", "url" => "plugins/new"]) !!}
-            <div class="panel-body">
+            <div class="card-body">
                 <div class="form-group">
                     {!! Form::label("plugin-name", "Plugin Name") !!}
                     {!! Form::text("plugin-name", null, ["class" => "form-control"]) !!}
@@ -77,6 +77,7 @@
                     <script>
                         $(document).ready(function() {
                             $('#full-description').summernote({minHeight: 200});
+                            $('.note-popover').css({ display: 'none' });
                         });
                     </script>
                 </div>

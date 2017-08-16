@@ -48,12 +48,15 @@ class ForumPost extends Model {
 
     function getPage() {
         return \Cache::remember('post_page-'.$this->id, 1, function(){
-            $query = \DB::select("SELECT (@i := @i + 1) AS row, id FROM forum_post CROSS JOIN (SELECT @i := 0) AS dummy WHERE topic = ? AND deleted_at is null ORDER BY created_at ASC", [$this->topic]);
+            $query = \DB::select("SELECT id FROM forum_post WHERE topic = ? AND deleted_at is null ORDER BY created_at ASC", [$this->topic]);
 
+            $i = 0;
             foreach ($query as $v){
                 if($v->id == $this->id){
-                    return ceil($v->row / ForumPost::$postsPerPage);
+                    return ceil($i / ForumPost::$postsPerPage);
                 }
+
+                $i++;
             }
 
             return 1;
@@ -62,7 +65,13 @@ class ForumPost extends Model {
 
     function user(){
         return \Cache::remember('user-'.$this->userid, 0, function(){
-            return User::find($this->userid);
+            $user = User::find($this->userid);
+
+            if(is_null($user)){
+                $user = User::DeletedUser();
+            }
+
+            return $user;
         });
     }
 
@@ -100,7 +109,13 @@ class ForumPost extends Model {
 
     function lastUser(){
         return \Cache::remember('user-'.$this->lastuserid, 0, function(){
-            return User::find($this->lastuserid);
+            $user = User::find($this->lastuserid);
+
+            if(is_null($user)){
+                $user = User::DeletedUser();
+            }
+
+            return $user;
         });
     }
 

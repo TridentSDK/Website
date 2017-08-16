@@ -3,8 +3,12 @@
 @section("title", "Members")
 
 @section('content')
-    <h1>Members</h1>
-    <hr/>
+
+    <div class="headbox">
+        <h1 class="display-4">Members</h1>
+    </div>
+    <hr />
+
     <div class="row">
         @php($count = 0)
         @foreach($members as $member)

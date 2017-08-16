@@ -21,6 +21,7 @@
         <script>
             $(document).ready(function() {
                 $('#topic_text').summernote({minHeight: 200});
+                $('.note-popover').css({ display: 'none' });
             });
         </script>
     </div>

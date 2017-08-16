@@ -159,4 +159,17 @@ class User extends Authenticatable {
 	    return false;
     }
 
+    /**
+     * @return User
+     */
+    public static function DeletedUser() {
+        $user = new User();
+        $user->id = -1;
+        $user->username = "Deleted";
+        $user->email = "Deleted";
+        $user->mcusername = "Deleted";
+        $user->rank = 0;
+        return $user;
+    }
+
 }

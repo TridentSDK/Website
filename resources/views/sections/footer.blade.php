@@ -21,19 +21,19 @@
 <script src="{{ asset("/assets/js/nestable.js") }}" type="text/javascript"></script>
 <script src="{{ asset("/assets/js/jquery.jeditable.mini.js") }}" type="text/javascript"></script>
 
-<script src="{{ asset("/bower_components/bootstrap/dist/js/bootstrap.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("/bower_components/bootstrap-material-design/dist/js/material.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("/bower_components/bootstrap-material-design/dist/js/ripples.min.js") }}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
-<script src="{{ asset("/bower_components/bootstrap-validator/dist/validator.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("/node_modules/bootstrap/dist/js/bootstrap.min.js") }}" type="text/javascript"></script>
+
+<script src="{{ asset("/node_modules/bootstrap-validator/dist/validator.min.js") }}" type="text/javascript"></script>
 
 <script src="{{ asset("/assets/js/js.js") }}" type="text/javascript"></script>
 
-<script src="{{ asset("/bower_components/summernote/dist/summernote.min.js") }}"></script>
+<script src="{{ asset("/node_modules/summernote/dist/summernote.min.js") }}"></script>
 
 <script>
     $(function () {
-        $.material.init();
+        $('body').bootstrapMaterialDesign({});
     });
 
     @if(Auth::check())

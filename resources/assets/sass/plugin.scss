@@ -33,15 +33,19 @@
 
     .search-bar {
       padding-left: 15px;
-      padding-right: 20px;
+      padding-right: 15px;
 
       .search-box {
         @media (max-width: 768px) {
           padding-right: 0;
         }
+
+        .card-body {
+          padding: 0.2rem;
+        }
       }
 
-      .panel{
+      .card {
         padding: 3px 10px;
 
         @media (max-width: 768px) {
@@ -70,6 +74,11 @@
           }
         }
       }
+    }
+
+    .plugin-cards {
+      padding-left: 15px;
+      padding-right: 15px;
     }
 
     .plugin-element {
@@ -132,7 +141,7 @@
 
 }
 
-.panel-body.tabbed {
+.card-body.tabbed {
   padding: 0;
 
   .tab-content .tab-pane {
@@ -143,9 +152,11 @@
 .nav.nav-tabs .active {
   background-color: rgba(78, 78, 78, 0.18);
   margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
 }
 
-.panel .nav-tabs {
+.card .nav-tabs {
   justify-content: center;
   display: flex;
 }
@@ -166,14 +177,6 @@
   margin-top: -1px;
   font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
   font-size: 85%;
-}
-
-.col-md-8-5 {
-  width: 70.83%;
-}
-
-.col-md-3-5 {
-  width: 29.16%;
 }
 
 .hidden-checkboxes {

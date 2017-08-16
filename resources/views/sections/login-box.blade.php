@@ -1,9 +1,11 @@
 @if(Auth::check())
     @php($notifications = Auth::user()->getLatestNotifications())
     @php($unread = Auth::user()->getUnreadNotificationCount())
-    <li class="dropdown">
-        <a data-toggle="dropdown" href="#" class="search-dropdown-button">
-            <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+    <li class="nav-item dropdown">
+
+        <a data-toggle="dropdown" href="#" class="nav-link dropdown-toggle">
+            <span class="oi oi-bell"></span>
+
             @if($unread > 0)
                 <span class="badge search-icon-badge">{{ $unread }}</span>
             @endif
@@ -16,15 +18,18 @@
             @endforelse
         </ul>
     </li>
-    <li class="dropdown">
-        <a data-toggle="dropdown" href="#">{{ Auth::getUser()->username }} <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li><a href="/user/{{ Auth::getUser()->id }}/">Profile</a></li>
-            <li><a href="/settings/{{ Auth::getUser()->id }}/">Settings</a></li>
-            <li><a href="/logout/">Logout</a></li>
-        </ul>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::getUser()->username }}</a>
+        <div class="dropdown-menu" role="menu">
+            <a class="dropdown-item" href="/user/{{ Auth::getUser()->id }}/">Profile</a>
+            <a class="dropdown-item" href="/settings/{{ Auth::getUser()->id }}/">Settings</a>
+            <a class="dropdown-item" href="/logout/">Logout</a>
+        </div>
     </li>
 @else
-    <li class="has-form"><a href="#" data-toggle="modal" data-target="#loginModal" class="button">Login / Register</a></li>
+    <li class="nav-item">
+        <a href="#" data-toggle="modal" data-target="#loginModal" class="nav-link">Login / Register</a>
+    </li>
 @endif
 

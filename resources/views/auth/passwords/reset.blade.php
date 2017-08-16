@@ -5,9 +5,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="panel">
+            <div class="card">
                 {!! Form::open(["id" => "newPasswordForm", "url" => "/password/reset"]) !!}
-                <div class="panel-body">
+                <div class="card-body">
                     {!! Form::hidden("token", $token) !!}
 
                     <div class="form-group">

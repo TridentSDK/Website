@@ -1,43 +1,37 @@
-<div class="navbar navbar-inverse navbar-fixed-top navbar-info" role="navigation">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark justify-content-between" role="navigation">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">TridentSDK</a>
-        </div>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
-                @foreach($navigation_menu_items as $key => $val)
+        <a class="navbar-brand" href="/" style="padding: 0">TridentSDK</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                @foreach(\TridentSDK\Utils\Menu::$navigation_menu_items as $key => $val)
                     @if(is_array($val))
                         @include("sections.navigation-dropdown", ["name" => $key, "dropdown" => $val])
                     @else
                         @if(Request::segment(1) == str_replace("/", "", $val))
-                            <li class="active"><a href="{{ url($val) }}" {{ (substr($val, 0, 1) == "/" ? "" : ' target="_blank"') }}>{{ $key }}</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="{{ url($val) }}" {{ (substr($val, 0, 1) == "/" ? "" : ' target="_blank"') }}>{{ $key }}</a></li>
                         @else
-                            <li><a href="{{ url($val) }}" {{ (substr($val, 0, 1) == "/" ? "" : ' target="_blank"') }}>{{ $key }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url($val) }}" {{ (substr($val, 0, 1) == "/" ? "" : ' target="_blank"') }}>{{ $key }}</a></li>
                         @endif
                     @endif
                 @endforeach
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                @include("sections.login-box")
-            </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="padding:12px; width: 275px;">
-                        <form class="form-inline" role="search" method="get" action="/search/">
-                            <input type="text" class="form-control pull-left" placeholder="Search" name="search" style="margin-bottom: 0;">
-                            <button type="submit" class="btn btn-info btn-raised pull-right" style="margin: 0;"><i class="glyphicon glyphicon-search"></i></button>
-                        </form>
-                    </ul>
-                </li>
+            <form class="form-inline mr-auto" role="search" method="get" action="/search/">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <ul class="navbar-nav">
+                @include("sections.login-box")
             </ul>
         </div>
     </div>
-</div>
+</nav>
 @if(!Auth::check())
     @include("sections.login-modal")
 @endif

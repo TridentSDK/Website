@@ -14,12 +14,11 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset("/bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("/node_modules/bootstrap/dist/css/bootstrap.min.css") }}">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset("/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css") }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset("/bower_components/bootstrap-material-design/dist/css/ripples.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("/node_modules/summernote/dist/summernote.css") }}">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset("/bower_components/summernote/dist/summernote.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("/node_modules/open-iconic/font/css/open-iconic-bootstrap.css") }}">
 
     <link href="{{ asset("/css/app.css") }}" rel="stylesheet" type="text/css">
 
@@ -30,7 +29,7 @@
     <link rel="shortcut icon" href="{{ asset("/assets/images/favicon.ico") }}" type="image/x-icon">
     <link rel="icon" href="{{ asset("/assets/images/favicon.ico") }}" type="image/x-icon">
 
-    <script src="{{ asset("/bower_components/jquery/dist/jquery.min.js") }}" type="text/javascript"></script>
+    <script src="{{ asset("/node_modules/jquery/dist/jquery.min.js") }}" type="text/javascript"></script>
 
     @yield("header-extra")
 </head>

@@ -5,14 +5,14 @@
 @section('content')
     @if($user != null)
 
-        <div class="clearfix headbox">
-            <h1 class="pull-left">{{ $user->username }}</h1>
+        <div class="clearfix">
+            <h1 class="display-4">{{ $user->username }}</h1>
         </div>
         <hr />
 
         <div class="row">
             <div class="col-md-12">
-                <div class="panel">
+                <div class="card">
 
                     @if($errors->getBag("settings")->any())
                         <div class="alert alert-danger" style="margin-bottom: 0;" role="alert">
@@ -27,7 +27,7 @@
                     @endif
 
                     {!! Form::open(["id" => "settingsForm", "url" => "settings/".$user->id]) !!}
-                    <div class="panel-body">
+                    <div class="card-body">
                         <div class="form-group">
                             {!! Form::label("new-email", "New Email") !!}
                             {!! Form::email("new-email", null, ["class" => "form-control"]) !!}
