@@ -115,7 +115,7 @@
                 </div>
                 @php($first = false)
             @elseif($post->post_type == "TOPIC_MOVED")
-                <div class="alert alert-info alert-no-margin" role="alert">
+                <div class="alert alert-info alert-no-margin straight-corner" role="alert">
                     <span href="#" class="alert-link">Topic moved from "{{ \TridentSDK\ForumCategory::find($post->topic_moved_from)->name }}" to "{{ \TridentSDK\ForumCategory::find($post->topic_moved_to)->name }}"</span>
                 </div>
             @endif
