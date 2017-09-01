@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset("/node_modules/bootstrap/dist/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("/node_modules/bootstrap-material-design/dist/css/bootstrap-material-design.min.css") }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset("/node_modules/summernote/dist/summernote.css") }}">
 
